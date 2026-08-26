@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooperative Gig Platform | Find Trusted Local Workers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3.0">
+</head>
+<body>
+    <div class="background-decorations">
+        <div class="glow-circle glow-top-left"></div>
+        <div class="glow-circle glow-bottom-right"></div>
+    </div>
+
+    <!-- ==========================================================
+         NAVIGATION HEADER
+         ========================================================== -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand" onclick="switchNav('home')">
+                <div class="brand-title">
+                    <span class="brand-logo-badge">🟡</span>
+                    <div>
+                        <h1>Cooperative Gig Platform</h1>
+                        <span class="brand-subtext">Local Community Services Network</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="main-nav" id="mainNav">
+                <button class="nav-btn active" data-tab="home" onclick="switchNav('home')">
+                    Home
+                </button>
+                <button class="nav-btn" data-tab="services" onclick="switchNav('services')">
+                    Find a Service
+                </button>
+                <button class="nav-btn" data-tab="how-it-works" onclick="switchNav('how-it-works')">
+                    How It Works
+                </button>
+                <button class="nav-btn" data-tab="customer-signup" id="navSignUpBtn" onclick="switchNav('customer-signup')">
+                    Sign Up
+                </button>
+                <button class="nav-btn" data-tab="customer-login" id="navLoginBtn" onclick="switchNav('customer-login')">
+                    Login
+                </button>
+                <button class="nav-btn" data-tab="worker-registration" onclick="switchNav('worker-registration')">
+                    Join as Worker
+                </button>
+            </nav>
+
+            <!-- Header Action CTAs -->
+            <div class="header-actions">
+                <div id="userHeaderStatus" class="header-user-status" style="display: none;">
+                    <span class="user-greeting">👤 <strong id="headerUserName">Customer</strong></span>
+                    <button class="btn btn-sm btn-outline-light" onclick="handleCustomerLogout()">Logout</button>
+                </div>
+                <div id="headerDefaultActions">
+                    <button class="btn btn-sm btn-primary" onclick="switchNav('services')">
+                        Find a Worker &rarr;
+                    </button>
+                    <button class="btn btn-sm btn-outline-light" onclick="switchNav('customer-login')">
+                        Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- ==========================================================
+             SECTION 1: HOME PAGE
+             ========================================================== -->
+        <section id="section-home" class="page-section active">
+            
+            <!-- Hero Card -->
+            <div class="hero-card">
+                <div class="hero-badge">TRUSTED LOCAL SERVICES &bull; ZERO COMMISSIONS</div>
+                <h2>Need help at home?</h2>
+                <p class="hero-tagline">Find trusted local workers for everyday services.</p>
+                <p class="hero-subtitle">
+                    Connect directly with verified plumbers, electricians, drivers, cleaners, carpenters, painters, and cooks in your neighborhood.
+                </p>
+
+                <!-- Clean Search Bar -->
+                <div class="hero-search-bar">
+                    <div class="search-input-group">
+                        <label for="homeServiceSelect">What service do you need?</label>
+                        <div class="select-wrapper">
+                            <span class="field-icon">🛠️</span>
+                            <select id="homeServiceSelect" class="clean-select">
+                                <option value="">Choose a service (e.g. Plumbing, Driver...)</option>
+                                <option value="Plumbing">🔧 Plumbing</option>
+                                <option value="Electrical Services">⚡ Electrical Services</option>
+                                <option value="AC Repair & Maintenance">❄️ AC Repair & Maintenance</option>
+                                <option value="Cleaning Services">🧹 Cleaning Services</option>
+                                <option value="Carpenter">🪚 Carpenter</option>
+                                <option value="Painting">🎨 Painting</option>
+                                <option value="Driver">🚗 Driver</option>
+                                <option value="Cooking Services">🍳 Cooking Services</option>
+                                <option value="Mason / Construction">🧱 Mason / Construction</option>
+                                <option value="Laundry">🧺 Laundry</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="search-input-group">
+                        <label for="homeLocationInput">Where do you need it?</label>
+                        <div class="text-wrapper">
+                            <span class="field-icon">📍</span>
+                            <input type="text" id="homeLocationInput" class="clean-input" placeholder="Enter your city or area (e.g. Lucknow, Bangalore, Mumbai)" maxlength="150">
+                        </div>
+                    </div>
+
+                    <div class="search-btn-group">
+                        <button type="button" class="btn btn-primary btn-hero-search" onclick="executeHomeSearch()">
+                            <span>Find Workers</span> &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Action Buttons -->
+                <div class="hero-cta-row">
+                    <button class="btn btn-primary btn-lg" onclick="switchNav('services')">
+                        <span>Find a Worker</span> &rarr;
+                    </button>
+                    <button class="btn btn-outline-white btn-lg" onclick="switchNav('worker-registration')">
+                        <span>Join as a Worker</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Popular Services Quick Chips -->
+            <div class="popular-services-container">
+                <span class="popular-label">Popular Services:</span>
+                <div class="popular-chips-list">
+                    <button type="button" class="chip-btn" onclick="quickSearchService('Plumbing')">🔧 Plumbing</button>
+                    <button type="button" class="chip-btn" onclick="quickSearchService('Electrical Services')">⚡ Electrical</button>
+                    <button type="button" class="chip-btn" onclick="quickSearchService('AC Repair & Maintenance')">❄️ AC Repair</button>
+                    <button type="button" class="chip-btn" onclick="quickSearchService('Cleaning Services')">🧹 Cleaning</button>
+                    <button type="button" class="chip-btn" onclick="quickSearchService('Carpenter')">🪚 Carpenter</button>
+                    <button type="button" class="chip-btn" onclick="quickSearchService('Painting')">🎨 Painting</button>
+                    <button type="button" class="chip-btn" onclick="quickSearchService('Driver')">🚗 Driver</button>
+                    <button type="button" class="chip-btn" onclick="quickSearchService('Cooking Services')">🍳 Cooking</button>
+                </div>
+            </div>
+
+            <!-- How It Works Section (Home Embedded) -->
+            <div class="section-block">
+                <div class="block-header text-center">
+                    <span class="sub-badge">SIMPLE & TRANSPARENT</span>
+                    <h2>How It Works</h2>
+                    <p class="text-secondary">A direct community connection designed for everyone.</p>
+                </div>
+
+                <div class="how-it-works-grid">
+                    <!-- Customer Journey -->
+                    <div class="journey-card">
+                        <div class="journey-header">
+                            <span class="journey-icon">👤</span>
+                            <h3>For Customers</h3>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-text">
+                                <strong>Choose a Service</strong>
+                                <p>Pick the service you need from our verified trade categories.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-text">
+                                <strong>Find Local Workers</strong>
+                                <p>Browse real registered workers in your area.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-text">
+                                <strong>Book Service Request</strong>
+                                <p>Request a service slot in seconds with zero hidden middleman fees.</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-full" onclick="switchNav('services')">
+                            Explore Services &rarr;
+                        </button>
+                    </div>
+
+                    <!-- Worker Journey -->
+                    <div class="journey-card highlight-journey">
+                        <div class="journey-header">
+                            <span class="journey-icon">👷‍♂️</span>
+                            <h3>For Workers</h3>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-text">
+                                <strong>Register Your Skills</strong>
+                                <p>Create your worker profile in less than 2 minutes.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-text">
+                                <strong>Get Discovered</strong>
+                                <p>Join the cooperative network with zero platform commissions.</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-text">
+                                <strong>Receive Customer Bookings</strong>
+                                <p>Get direct local service requests from nearby customers.</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="switchNav('worker-registration')">
+                            Join as a Worker &rarr;
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust & Safety Section -->
+            <div class="section-block">
+                <div class="block-header text-center">
+                    <span class="sub-badge">TRUST & RELIABILITY</span>
+                    <h2>Why use Cooperative Gig Platform?</h2>
+                    <p class="text-secondary">Built to empower local workers and provide dependable neighborhood services.</p>
+                </div>
+
+                <div class="trust-grid">
+                    <div class="trust-card">
+                        <div class="trust-icon">✓</div>
+                        <h3>Verified Workers</h3>
+                        <p>Connect with real registered service providers in your community.</p>
+                    </div>
+                    <div class="trust-card">
+                        <div class="trust-icon">🔒</div>
+                        <h3>Secure Accounts</h3>
+                        <p>Your account information is handled securely with encrypted credentials.</p>
+                    </div>
+                    <div class="trust-card">
+                        <div class="trust-icon">📍</div>
+                        <h3>Local Services</h3>
+                        <p>Find workers based on your specific trade and location in real-time.</p>
+                    </div>
+                    <div class="trust-card">
+                        <div class="trust-icon">🤝</div>
+                        <h3>Cooperative Model</h3>
+                        <p>Built to create better opportunities and fair, commission-free earnings for local workers.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================================
+             SECTION 2: SERVICES MARKETPLACE
+             ========================================================== -->
+        <section id="section-services" class="page-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Choose a Service</h2>
+                    <p>Select what you need help with to find skilled local workers in your area.</p>
+                </div>
+                <div class="heading-controls">
+                    <input type="text" id="serviceSearchFilter" class="filter-search-input" placeholder="Search services..." oninput="filterServiceCards()">
+                    <button class="btn btn-sm btn-outline" onclick="loadServices()">🔄 Refresh</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Services Cards Grid (Rendered via API) -->
+            <div class="services-grid" id="servicesGrid">
+                <div class="loading-box">
+                    <span class="btn-spinner"></span>
+                    <p>Loading services from database...</p>
+                </div>
+            </div>
+
+            <!-- Worker Search Results Drawer / View -->
+            <div id="workerSearchResults" class="worker-search-container" style="display: none;">
+                <div class="search-header-row">
+                    <div>
+                        <span class="search-badge" id="searchServiceBadge">Plumbing</span>
+                        <h3 id="searchResultsTitle">Available Workers for Plumbing</h3>
+                        <p class="text-secondary" id="searchResultsSubtitle">Showing registered workers available for this trade.</p>
+                    </div>
+                    <div class="search-header-actions">
+                        <button class="btn btn-sm btn-primary" id="headerRegisterServiceWorkerBtn" onclick="registerForSelectedService()">
+                            + Register as Worker for this Service
+                        </button>
+                        <button class="btn btn-sm btn-secondary" onclick="closeWorkerSearch()">✕ Close</button>
+                    </div>
+                </div>
+
+                <!-- Worker Cards Grid -->
+                <div class="worker-cards-grid" id="workerCardsGrid">
+                    <!-- Populated dynamically by JS -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================================
+             SECTION 3: HOW IT WORKS (Full Standalone Page)
+             ========================================================== -->
+        <section id="section-how-it-works" class="page-section">
+            <div class="section-heading">
+                <div>
+                    <h2>How It Works</h2>
+                    <p>Learn how our cooperative local services marketplace operates for both customers and skilled workers.</p>
+                </div>
+            </div>
+
+            <div class="how-it-works-grid" style="margin-bottom: 3rem;">
+                <!-- Customer Journey -->
+                <div class="journey-card">
+                    <div class="journey-header">
+                        <span class="journey-icon">👤</span>
+                        <h3>For Customers</h3>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">
+                            <strong>Choose a Service</strong>
+                            <p>Select the trade or task you need assistance with from our categories.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">
+                            <strong>Find Local Workers</strong>
+                            <p>Browse available, registered workers in your area with their experience and contact details.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">
+                            <strong>Request / Book Service</strong>
+                            <p>Submit your service request with preferred date and time slot. No hidden fees.</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="switchNav('services')">
+                        Find a Service Now &rarr;
+                    </button>
+                </div>
+
+                <!-- Worker Journey -->
+                <div class="journey-card highlight-journey">
+                    <div class="journey-header">
+                        <span class="journey-icon">👷‍♂️</span>
+                        <h3>For Workers</h3>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">
+                            <strong>Register Your Profile</strong>
+                            <p>Submit your name, phone number, skill trade, and years of experience.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">
+                            <strong>Get Listed Immediately</strong>
+                            <p>Your profile is instantly stored in the registry and displayed under your trade.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">
+                            <strong>Receive Direct Bookings</strong>
+                            <p>Customers request your services directly with zero middleman deductions.</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="switchNav('worker-registration')">
+                        Join as a Worker &rarr;
+                    </button>
+                </div>
+            </div>
+
+            <!-- Trust Grid in How It Works -->
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon">✓</div>
+                    <h3>Verified Workers</h3>
+                    <p>Connect with real registered service providers in your community.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🔒</div>
+                    <h3>Secure Accounts</h3>
+                    <p>Your account information is handled securely with encrypted credentials.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">📍</div>
+                    <h3>Local Services</h3>
+                    <p>Find workers based on your specific trade and location in real-time.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🤝</div>
+                    <h3>Cooperative Model</h3>
+                    <p>Built to create better opportunities and fair, commission-free earnings for local workers.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================================
+             SECTION 4: CUSTOMER SIGN-UP
+             ========================================================== -->
+        <section id="section-customer-signup" class="page-section">
+            <div class="form-container">
+                <div class="card-header">
+                    <div class="brand-badge">CUSTOMER ACCOUNT</div>
+                    <h2>Create your account</h2>
+                    <p>Sign up in 2 simple steps to request home services and connect with local workers.</p>
+                </div>
+
+                <!-- Customer Error Alert -->
+                <div id="customerErrorAlert" class="alert alert-error" style="display: none;">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h4>Something went wrong</h4>
+                        <p id="customerErrorMessage">We couldn't complete your request. Please check the highlighted fields.</p>
+                        <ul id="customerErrorList" class="error-list"></ul>
+                    </div>
+                    <button type="button" class="close-btn" onclick="hideAlert('customerErrorAlert')">&times;</button>
+                </div>
+
+                <!-- Customer Sign-Up Form -->
+                <form id="customerForm" novalidate>
+                    
+                    <!-- Step 1: Basic Information -->
+                    <div class="form-step-section">
+                        <div class="step-section-title">
+                            <span class="step-pill">Step 1</span>
+                            <h3>Your Information</h3>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- Full Name -->
+                            <div class="form-group">
+                                <label for="custFullName">Full Name <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">👤</span>
+                                    <input type="text" id="custFullName" name="fullName" placeholder="e.g. Rahul Sharma" required minlength="2" maxlength="100">
+                                </div>
+                                <small class="field-error" id="custFullNameError"></small>
+                            </div>
+
+                            <!-- Mobile Number -->
+                            <div class="form-group">
+                                <label for="custPhone">Mobile Number <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">📱</span>
+                                    <input type="tel" id="custPhone" name="phone" placeholder="10-digit mobile number, e.g. 9876543210" required maxlength="15">
+                                </div>
+                                <small class="field-error" id="custPhoneError"></small>
+                            </div>
+
+                            <!-- Email Address -->
+                            <div class="form-group full-width">
+                                <label for="custEmail">Email Address <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">✉️</span>
+                                    <input type="email" id="custEmail" name="email" placeholder="e.g. rahul.sharma@example.com" required maxlength="100">
+                                </div>
+                                <small class="field-error" id="custEmailError"></small>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label for="custPassword">Password <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">🔒</span>
+                                    <input type="password" id="custPassword" name="password" placeholder="At least 6 characters" required minlength="6">
+                                </div>
+                                <small class="field-error" id="custPasswordError"></small>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class="form-group">
+                                <label for="custConfirmPassword">Confirm Password <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">🔑</span>
+                                    <input type="password" id="custConfirmPassword" name="confirmPassword" placeholder="Re-enter password" required minlength="6">
+                                </div>
+                                <small class="field-error" id="custConfirmPasswordError"></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Location -->
+                    <div class="form-step-section" style="margin-top: 1.5rem;">
+                        <div class="step-section-title">
+                            <span class="step-pill">Step 2</span>
+                            <h3>Your Location</h3>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- City / Location -->
+                            <div class="form-group">
+                                <label for="custLocation">City / Area <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">📍</span>
+                                    <input type="text" id="custLocation" name="location" placeholder="e.g. Bangalore, Karnataka" required maxlength="150">
+                                </div>
+                                <small class="field-error" id="custLocationError"></small>
+                            </div>
+
+                            <!-- Full Address -->
+                            <div class="form-group">
+                                <label for="custAddress">Full Address <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">🏠</span>
+                                    <input type="text" id="custAddress" name="address" placeholder="e.g. Flat 302, Green Valley Apts, Indiranagar" required maxlength="250">
+                                </div>
+                                <small class="field-error" id="custAddressError"></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                        <button type="submit" class="btn btn-primary" id="custSubmitBtn">
+                            <span class="btn-text">Create Account</span> &rarr;
+                            <span class="btn-spinner" style="display: none;"></span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Customer Success Confirmation Card -->
+                <div id="customerSuccessCard" class="success-card" style="display: none;">
+                    <div class="success-icon-badge">🎉</div>
+                    <h3>Account Created Successfully!</h3>
+                    <p class="success-subtitle">Your account has been created. You can now find services and connect with local workers.</p>
+                    
+                    <div class="details-box">
+                        <div class="detail-row">
+                            <span class="detail-label">Account Name:</span>
+                            <span class="detail-value" id="resCustName">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Mobile Number:</span>
+                            <span class="detail-value" id="resCustPhone">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Email Address:</span>
+                            <span class="detail-value" id="resCustEmail">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">City / Location:</span>
+                            <span class="detail-value" id="resCustLocation">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Service Address:</span>
+                            <span class="detail-value" id="resCustAddress">-</span>
+                        </div>
+                    </div>
+
+                    <div class="success-actions">
+                        <button type="button" class="btn btn-primary btn-lg" onclick="proceedToBookServiceWithCurrentCustomer()">
+                            <span>Find a Service</span> &rarr;
+                        </button>
+                        <button type="button" class="btn btn-outline" onclick="resetCustomerForm()">+ Create Another Account</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================================
+             SECTION: CUSTOMER LOGIN
+             ========================================================== -->
+        <section id="section-customer-login" class="page-section">
+            <div class="form-container">
+                <div class="card-header">
+                    <div class="brand-badge">CUSTOMER PORTAL</div>
+                    <h2>Login to your account</h2>
+                    <p>Access your saved details to quickly book local services.</p>
+                </div>
+
+                <!-- Customer Login Error Alert -->
+                <div id="customerLoginErrorAlert" class="alert alert-error" style="display: none;">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h4>Login Failed</h4>
+                        <p id="customerLoginErrorMessage">Invalid email or password.</p>
+                    </div>
+                    <button type="button" class="close-btn" onclick="hideAlert('customerLoginErrorAlert')">&times;</button>
+                </div>
+
+                <!-- Customer Login Form -->
+                <form id="customerLoginForm" novalidate>
+                    <div class="form-step-section">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="loginEmail">Email Address <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">✉️</span>
+                                    <input type="email" id="loginEmail" name="email" placeholder="e.g. rahul.sharma@example.com" required maxlength="100">
+                                </div>
+                                <small class="field-error" id="loginEmailError"></small>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="loginPassword">Password <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">🔒</span>
+                                    <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required minlength="6">
+                                </div>
+                                <small class="field-error" id="loginPasswordError"></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="loginSubmitBtn">
+                            <span class="btn-text">Login</span> &rarr;
+                            <span class="btn-spinner" style="display: none;"></span>
+                        </button>
+                    </div>
+
+                    <p class="text-secondary text-center" style="margin-top: 1.25rem;">
+                        Don't have an account? <a href="javascript:void(0)" onclick="switchNav('customer-signup')">Sign Up here</a>
+                    </p>
+                </form>
+            </div>
+        </section>
+
+
+        <!-- ==========================================================
+             SECTION 5: WORKER REGISTRATION ("Become a Worker")
+             ========================================================== -->
+        <section id="section-worker-registration" class="page-section">
+            <div class="form-container">
+                <div class="card-header">
+                    <div class="brand-badge">WORKER PORTAL</div>
+                    <h2>Become a Worker</h2>
+                    <p>Register your skills and connect with customers who need your services in your area.</p>
+                </div>
+
+                <!-- Context-Aware Service Selection Banner -->
+                <div id="serviceContextBanner" class="service-context-banner" style="display: none;">
+                    <div class="context-banner-left">
+                        <span class="context-banner-icon">🎯</span>
+                        <div>
+                            <span class="context-badge">SERVICE SELECTED</span>
+                            <h4 id="serviceContextText">Registering as: <strong>Driver</strong></h4>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-change-skill" onclick="clearWorkerServiceContext()">✕ Change</button>
+                </div>
+
+                <!-- Global Error Alert Box -->
+                <div id="errorAlert" class="alert alert-error" style="display: none;">
+                    <div class="alert-icon">⚠️</div>
+                    <div class="alert-content">
+                        <h4 id="errorTitle">Something went wrong</h4>
+                        <p id="errorMessage">We couldn't complete your request. Please check the highlighted fields and try again.</p>
+                        <ul id="errorList" class="error-list"></ul>
+                    </div>
+                    <button type="button" class="close-btn" onclick="hideAlert('errorAlert')">&times;</button>
+                </div>
+
+                <!-- Registration Form -->
+                <form id="workerForm" novalidate>
+                    
+                    <!-- 1. Personal Information -->
+                    <div class="form-step-section">
+                        <div class="step-section-title">
+                            <span class="step-pill">1</span>
+                            <h3>Your Information</h3>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- Full Name -->
+                            <div class="form-group">
+                                <label for="fullName">Full Name <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">👤</span>
+                                    <input type="text" id="fullName" name="fullName" placeholder="e.g. Ramesh Kumar" required minlength="2" maxlength="100">
+                                </div>
+                                <small class="field-error" id="fullNameError"></small>
+                            </div>
+
+                            <!-- Mobile Number -->
+                            <div class="form-group">
+                                <label for="phone">Mobile Number <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">📱</span>
+                                    <input type="tel" id="phone" name="phone" placeholder="e.g. 9876543210" required maxlength="20">
+                                </div>
+                                <small class="field-error" id="phoneError"></small>
+                            </div>
+
+                            <!-- Email Address -->
+                            <div class="form-group full-width">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">✉️</span>
+                                    <input type="email" id="email" name="email" placeholder="e.g. ramesh.kumar@example.com" required maxlength="100">
+                                </div>
+                                <small class="field-error" id="emailError"></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Work & Experience -->
+                    <div class="form-step-section" style="margin-top: 1.5rem;">
+                        <div class="step-section-title">
+                            <span class="step-pill">2</span>
+                            <h3>Your Work</h3>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- Work / Skill -->
+                            <div class="form-group">
+                                <label for="skill">
+                                    What service do you provide? <span class="required">*</span>
+                                    <span class="skill-lock-badge" id="skillLockBadge" style="display: none;">🔒 Locked to Selected Service</span>
+                                </label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon" id="skillInputIcon">🛠️</span>
+                                    <input list="skillSuggestions" id="skill" name="skill" placeholder="Choose or type your service..." required maxlength="100">
+                                    <datalist id="skillSuggestions">
+                                        <option value="Plumbing">
+                                        <option value="Electrical Services">
+                                        <option value="AC Repair & Maintenance">
+                                        <option value="Cleaning Services">
+                                        <option value="Carpenter">
+                                        <option value="Painting">
+                                        <option value="Driver">
+                                        <option value="Cooking Services">
+                                        <option value="Mason / Construction">
+                                        <option value="Laundry">
+                                        <option value="Other">
+                                    </datalist>
+                                </div>
+                                <small class="field-error" id="skillError"></small>
+                            </div>
+
+                            <!-- Experience Selector -->
+                            <div class="form-group">
+                                <label for="experienceSelect">Experience <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">⏳</span>
+                                    <select id="experienceSelect" class="select-input" required onchange="syncExperienceInput()">
+                                        <option value="1">Less than 1 year</option>
+                                        <option value="2">1–3 years</option>
+                                        <option value="4" selected>3–5 years</option>
+                                        <option value="6">5+ years</option>
+                                        <option value="10">10+ years</option>
+                                    </select>
+                                    <input type="hidden" id="experienceYears" name="experienceYears" value="4">
+                                </div>
+                                <small class="field-error" id="experienceYearsError"></small>
+                            </div>
+
+                            <!-- Location -->
+                            <div class="form-group">
+                                <label for="location">City / Area <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">📍</span>
+                                    <input type="text" id="location" name="location" placeholder="City or area (e.g. Bangalore, Karnataka)" required maxlength="150">
+                                </div>
+                                <small class="field-error" id="locationError"></small>
+                            </div>
+
+                            <!-- Referral (Optional) -->
+                            <div class="form-group">
+                                <label for="invitedBy">Referred by someone? <span class="optional">(Optional)</span></label>
+                                <div class="input-wrapper">
+                                    <span class="input-icon">🤝</span>
+                                    <input type="text" id="invitedBy" name="invitedBy" placeholder="Partner name or contractor (Optional)" maxlength="100">
+                                </div>
+                                <small class="field-error" id="invitedByError"></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-secondary" id="resetBtn">Reset</button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <span class="btn-text">Register as Worker</span> &rarr;
+                            <span class="btn-spinner" style="display: none;"></span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Worker Success Confirmation Card -->
+                <div id="successCard" class="success-card" style="display: none;">
+                    <div class="success-icon-badge">✅</div>
+                    <h3>You're Registered!</h3>
+                    <p class="success-subtitle">Your worker profile has been successfully created.</p>
+                    
+                    <div class="details-box">
+                        <div class="detail-row">
+                            <span class="detail-label">Worker Name:</span>
+                            <span class="detail-value" id="resFullName">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Mobile Number:</span>
+                            <span class="detail-value" id="resPhone">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Email Address:</span>
+                            <span class="detail-value" id="resEmail">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Service:</span>
+                            <span class="detail-value highlight-id" id="resSkill">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Experience:</span>
+                            <span class="detail-value" id="resExperience">-</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Location:</span>
+                            <span class="detail-value" id="resLocation">-</span>
+                        </div>
+                    </div>
+
+                    <div class="success-actions">
+                        <button type="button" class="btn btn-primary" id="viewInServicesBtn" onclick="switchNav('services')">
+                            View Your Profile &rarr;
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="resetAndShowForm()">
+                            + Register Another Worker
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================================
+             SECTION 6: ADMIN / DEVELOPER DASHBOARD
+             ========================================================== -->
+        <section id="section-admin" class="page-section">
+            <div class="admin-header-card">
+                <div class="admin-title-row">
+                    <div>
+                        <span class="admin-badge">ADMIN / DEVELOPER VIEW</span>
+                        <h2>Admin Dashboard & MySQL Database Records</h2>
+                        <p class="text-secondary">Real-time inspection of database tables and metrics.</p>
+                    </div>
+                    <button class="btn btn-sm btn-primary" onclick="fetchAllTablesData()">🔄 Refresh Database</button>
+                </div>
+
+                <!-- Admin Metrics Grid -->
+                <div class="admin-stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon">👥</span>
+                        <div class="stat-info">
+                            <span class="stat-count" id="statWorkerCount">0</span>
+                            <span class="stat-label">Total Workers</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">👤</span>
+                        <div class="stat-info">
+                            <span class="stat-count" id="statCustomerCount">0</span>
+                            <span class="stat-label">Total Customers</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">📋</span>
+                        <div class="stat-info">
+                            <span class="stat-count" id="statRequestCount">0</span>
+                            <span class="stat-label">Service Requests</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon">🔧</span>
+                        <div class="stat-info">
+                            <span class="stat-count" id="statServiceCount">10</span>
+                            <span class="stat-label">Available Services</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Selector Tabs -->
+            <div class="db-tabs">
+                <button class="db-tab-btn active" onclick="switchDbTab('tab-workers')">Workers (<span id="countWorkersTab">0</span>)</button>
+                <button class="db-tab-btn" onclick="switchDbTab('tab-customers')">Customers (<span id="countCustomersTab">0</span>)</button>
+                <button class="db-tab-btn" onclick="switchDbTab('tab-requests')">Service Requests (<span id="countRequestsTab">0</span>)</button>
+                <button class="db-tab-btn" onclick="switchDbTab('tab-services')">Services (<span id="countServicesTab">0</span>)</button>
+            </div>
+
+            <!-- Table: workers -->
+            <div id="tab-workers" class="db-tab-content active">
+                <div class="table-title"><code>SELECT * FROM workers ORDER BY created_at DESC;</code></div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>worker_id</th>
+                                <th>full_name</th>
+                                <th>phone</th>
+                                <th>email</th>
+                                <th>skill</th>
+                                <th>experience_years</th>
+                                <th>location</th>
+                                <th>invited_by</th>
+                                <th>created_at</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dbWorkersTableBody">
+                            <tr><td colspan="9" class="text-center text-muted">Loading workers...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table: customers -->
+            <div id="tab-customers" class="db-tab-content">
+                <div class="table-title"><code>SELECT customer_id, full_name, phone, email, location, address, created_at FROM customers;</code></div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>customer_id</th>
+                                <th>full_name</th>
+                                <th>phone</th>
+                                <th>email</th>
+                                <th>location</th>
+                                <th>address</th>
+                                <th>created_at</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dbCustomersTableBody">
+                            <tr><td colspan="7" class="text-center text-muted">Loading customers...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table: service_requests -->
+            <div id="tab-requests" class="db-tab-content">
+                <div class="table-title"><code>SELECT * FROM service_requests ORDER BY created_at DESC;</code></div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>request_id</th>
+                                <th>Customer</th>
+                                <th>Worker</th>
+                                <th>Service</th>
+                                <th>Description</th>
+                                <th>Location</th>
+                                <th>Date & Time</th>
+                                <th>Status</th>
+                                <th>created_at</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dbRequestsTableBody">
+                            <tr><td colspan="9" class="text-center text-muted">Loading service requests...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Table: services -->
+            <div id="tab-services" class="db-tab-content">
+                <div class="table-title"><code>SELECT * FROM services ORDER BY service_id ASC;</code></div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>service_id</th>
+                                <th>Icon</th>
+                                <th>service_name</th>
+                                <th>description</th>
+                                <th>created_at</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dbServicesTableBody">
+                            <tr><td colspan="5" class="text-center text-muted">Loading services...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================================
+         MODAL: SERVICE BOOKING
+         ========================================================== -->
+    <div id="bookingModal" class="modal-backdrop" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3>📋 Book a Service</h3>
+                <button type="button" class="close-modal-btn" onclick="closeBookingModal()" aria-label="Close modal">&times;</button>
+            </div>
+            
+            <form id="bookingForm" novalidate>
+                <div class="modal-body">
+                    <!-- Selected Worker Info Banner -->
+                    <div class="selected-worker-banner">
+                        <div class="worker-avatar" id="bookWorkerIcon">👷‍♂️</div>
+                        <div class="worker-meta">
+                            <h4 id="bookWorkerName">Worker Name</h4>
+                            <p id="bookWorkerSkillLocation">Skill • Location</p>
+                        </div>
+                        <div class="verified-tag">🟢 Available</div>
+                    </div>
+
+                    <!-- Hidden IDs -->
+                    <input type="hidden" id="bookWorkerId" name="workerId">
+                    <input type="hidden" id="bookServiceId" name="serviceId">
+
+                    <div class="form-grid modal-grid">
+                        
+                        <!-- Your Account (Read-Only Authenticated Customer) -->
+                        <div class="form-group full-width">
+                            <label>Your Account</label>
+                            <div class="logged-in-user-card" id="bookAccountDisplay">
+                                <div class="user-avatar-icon">👤</div>
+                                <div class="user-account-meta">
+                                    <h4 id="bookCustomerName">Loading account...</h4>
+                                    <p id="bookCustomerDetails">Phone • Location</p>
+                                </div>
+                                <span class="verified-tag">✓ You</span>
+                            </div>
+                        </div>
+
+
+                        <!-- Location / Address -->
+                        <div class="form-group full-width">
+                            <label for="bookLocation">Service Location <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">📍</span>
+                                <input type="text" id="bookLocation" name="location" placeholder="e.g. Flat 302, Indiranagar, Bangalore" required maxlength="200">
+                            </div>
+                            <small class="field-error" id="bookLocationError"></small>
+                        </div>
+
+                        <!-- Preferred Date -->
+                        <div class="form-group">
+                            <label for="bookDate">Preferred Date <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">📅</span>
+                                <input type="date" id="bookDate" name="preferredDate" required>
+                            </div>
+                            <small class="field-error" id="bookDateError"></small>
+                        </div>
+
+                        <!-- Preferred Time -->
+                        <div class="form-group">
+                            <label for="bookTime">Preferred Time Slot <span class="required">*</span></label>
+                            <select id="bookTime" name="preferredTime" required class="select-input">
+                                <option value="Morning (9:00 AM - 12:00 PM)">Morning (9:00 AM - 12:00 PM)</option>
+                                <option value="Afternoon (12:00 PM - 3:00 PM)">Afternoon (12:00 PM - 3:00 PM)</option>
+                                <option value="Evening (3:00 PM - 7:00 PM)">Evening (3:00 PM - 7:00 PM)</option>
+                                <option value="Urgent / Immediate (Within 2 Hours)">Urgent / Immediate (Within 2 Hours)</option>
+                            </select>
+                            <small class="field-error" id="bookTimeError"></small>
+                        </div>
+
+                        <!-- Work Description -->
+                        <div class="form-group full-width">
+                            <label for="bookDescription">What do you need help with? <span class="required">*</span></label>
+                            <textarea id="bookDescription" name="description" rows="3" placeholder="Describe the issue or task in detail..." required maxlength="500"></textarea>
+                            <small class="field-error" id="bookDescriptionError"></small>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeBookingModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="bookSubmitBtn">
+                        <span class="btn-text">Request Service</span> &rarr;
+                        <span class="btn-spinner" style="display: none;"></span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Booking Success View -->
+            <div id="bookingSuccessBox" class="modal-success-box" style="display: none;">
+                <div class="success-icon-badge">🎉</div>
+                <h3>Service Request Created!</h3>
+                <p class="success-subtitle">Your request has been submitted with status: <strong class="badge-pending">PENDING</strong></p>
+                <div class="details-box">
+                    <div class="detail-row">
+                        <span class="detail-label">Assigned Worker:</span>
+                        <span class="detail-value" id="resReqWorker">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Customer Name:</span>
+                        <span class="detail-value" id="resReqCustomer">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Service:</span>
+                        <span class="detail-value" id="resReqService">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Date & Time:</span>
+                        <span class="detail-value" id="resReqDateTime">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Status:</span>
+                        <span class="detail-value"><span class="badge-pending">PENDING</span></span>
+                    </div>
+                </div>
+                <div class="modal-footer" style="justify-content: center;">
+                    <button type="button" class="btn btn-primary" onclick="closeBookingModal(); switchNav('services');">
+                        Done &bull; Find More Services
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ==========================================================
+         FOOTER
+         ========================================================== -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">
+                    <span class="brand-logo-badge">🟡</span>
+                    <h3>Cooperative Gig Platform</h3>
+                </div>
+                <p class="footer-desc">Empowering local workers and connecting trusted community home services with fair pricing and zero commissions.</p>
+            </div>
+            
+            <div class="footer-links-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="javascript:void(0)" onclick="switchNav('home')">Home</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchNav('services')">Find a Service</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchNav('how-it-works')">How It Works</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchNav('customer-signup')">Create Account</a></li>
+                    <li><a href="javascript:void(0)" onclick="switchNav('worker-registration')">Join as a Worker</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Admin & Status</h4>
+                <div class="footer-admin-group">
+                    <a href="javascript:void(0)" onclick="switchNav('admin')" class="admin-link">⚙️ Admin Dashboard</a>
+                    <div class="system-status-badge">
+                        <span class="status-indicator-dot"></span>
+                        <span>Connected to MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-trust-line">
+            <p>Built for local communities &bull; Fair &bull; Transparent &bull; Secure</p>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cooperative Gig Platform &bull; Smart India Hackathon</p>
+        </div>
+    </footer>
+
+    <script src="app.js?v=2.0"></script>
+</body>
+</html>
