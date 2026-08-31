@@ -16,6 +16,9 @@ Thumbs.db
 
 # Local environment / secrets
 .env
+.env.*
+application-local.properties
+secrets.properties
 
 # Java
 *.class

@@ -17,6 +17,9 @@ public class WorkerRegistrationDto {
     @Size(max = 100, message = "Email cannot exceed 100 characters")
     private String email;
 
+    @Size(min = 6, max = 100, message = "Password must be at least 6 characters")
+    private String password;
+
     @NotBlank(message = "Work/Skill is required")
     @Size(max = 100, message = "Skill cannot exceed 100 characters")
     private String skill;
@@ -69,6 +72,14 @@ public class WorkerRegistrationDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getSkill() {

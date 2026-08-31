@@ -11,6 +11,7 @@ public class CustomerResponseDto {
     private String email;
     private String location;
     private String address;
+    private String role;
     private LocalDateTime createdAt;
 
     public CustomerResponseDto() {
@@ -23,6 +24,7 @@ public class CustomerResponseDto {
         this.email = customer.getEmail();
         this.location = customer.getLocation();
         this.address = customer.getAddress();
+        this.role = customer.getRole();
         this.createdAt = customer.getCreatedAt();
     }
 
@@ -73,6 +75,14 @@ public class CustomerResponseDto {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public LocalDateTime getCreatedAt() {

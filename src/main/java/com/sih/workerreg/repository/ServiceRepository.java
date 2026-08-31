@@ -12,7 +12,10 @@ public interface ServiceRepository extends JpaRepository<ServiceItem, Long> {
 
     List<ServiceItem> findAllByOrderByServiceIdAsc();
 
+    Optional<ServiceItem> findByServiceName(String serviceName);
+
     Optional<ServiceItem> findByServiceNameIgnoreCase(String serviceName);
 
     boolean existsByServiceNameIgnoreCase(String serviceName);
 }
+

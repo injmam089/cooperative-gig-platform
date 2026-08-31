@@ -3,6 +3,7 @@ package com.sih.workerreg.service;
 import com.sih.workerreg.dto.WorkerRegistrationDto;
 import com.sih.workerreg.model.Worker;
 import com.sih.workerreg.repository.WorkerRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,23 +14,45 @@ import java.util.Optional;
 public class WorkerService {
 
     private final WorkerRepository workerRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public WorkerService(WorkerRepository workerRepository) {
         this.workerRepository = workerRepository;
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     /**
      * Registers a new worker from the submitted form data and saves into MySQL.
+     * Validates that email and phone are not already registered.
      *
      * @param dto the validated registration data
      * @return the saved Worker entity with auto-generated ID
      */
     @Transactional
     public Worker registerWorker(WorkerRegistrationDto dto) {
+        // Validate duplicate email
+        String emailClean = dto.getEmail().trim().toLowerCase();
+        if (workerRepository.existsByEmail(emailClean)) {
+            throw new IllegalArgumentException("An account with email '" + dto.getEmail() + "' already exists.");
+        }
+
+        // Validate duplicate phone
+        String phoneClean = dto.getPhone().trim();
+        if (workerRepository.existsByPhone(phoneClean)) {
+            throw new IllegalArgumentException("A worker with phone number '" + dto.getPhone() + "' already exists.");
+        }
+
         Worker worker = new Worker();
         worker.setFullName(dto.getFullName().trim());
-        worker.setPhone(dto.getPhone().trim());
-        worker.setEmail(dto.getEmail().trim().toLowerCase());
+        worker.setPhone(phoneClean);
+        worker.setEmail(emailClean);
+
+        // Hash password securely using BCrypt
+        String rawPass = (dto.getPassword() != null && !dto.getPassword().trim().isEmpty())
+                ? dto.getPassword()
+                : "Password@123";
+        worker.setPassword(passwordEncoder.encode(rawPass));
+
         worker.setSkill(dto.getSkill().trim());
         worker.setExperienceYears(dto.getExperienceYears());
         worker.setLocation(dto.getLocation().trim());
@@ -43,6 +66,22 @@ public class WorkerService {
 
         // Saves to MySQL and populates worker_id & created_at
         return workerRepository.save(worker);
+    }
+
+    /**
+     * Authenticates worker credentials using BCrypt password matching.
+     */
+    @Transactional(readOnly = true)
+    public Worker authenticate(String email, String rawPassword) {
+        String cleanEmail = email != null ? email.trim().toLowerCase() : "";
+        Worker worker = workerRepository.findByEmail(cleanEmail)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
+
+        if (worker.getPassword() == null || !passwordEncoder.matches(rawPassword, worker.getPassword())) {
+            throw new IllegalArgumentException("Invalid email or password.");
+        }
+
+        return worker;
     }
 
     /**
@@ -92,6 +131,65 @@ public class WorkerService {
     }
 
     /**
+     * Search workers by city with intelligent locality matching.
+     */
+    @Transactional(readOnly = true)
+    public List<Worker> searchWorkersByCity(String city) {
+        if (city == null || city.trim().isEmpty()) {
+            return getAllWorkers();
+        }
+        String cleanCity = extractCity(city);
+        return workerRepository.findByCityIgnoreCase(cleanCity);
+    }
+
+    /**
+     * Fetch nearby workers matching the customer's city with optional skill and status filters.
+     * Guaranteed to exclude workers from other cities.
+     */
+    @Transactional(readOnly = true)
+    public List<Worker> getNearbyWorkers(String city, String skill, String status) {
+        if (city == null || city.trim().isEmpty()) {
+            return List.of();
+        }
+
+        String cleanCity = extractCity(city);
+        boolean hasSkill = skill != null && !skill.trim().isEmpty();
+        boolean hasStatus = status != null && !status.trim().isEmpty();
+
+        if (!hasSkill && !hasStatus) {
+            return workerRepository.findByCityIgnoreCase(cleanCity);
+        }
+
+        String cleanSkill = hasSkill ? skill.trim() : null;
+        String cleanStatus = hasStatus ? status.trim() : null;
+
+        return workerRepository.findNearbyWorkersByCity(cleanCity, cleanSkill, cleanStatus);
+    }
+
+
+    /**
+     * Helper to extract the primary city name from location strings
+     * (e.g., "Aliganj, Lucknow" -> "Lucknow", "Gomti Nagar, Lucknow" -> "Lucknow", "Lucknow" -> "Lucknow").
+     */
+    public static String extractCity(String location) {
+        if (location == null || location.trim().isEmpty()) {
+            return "";
+        }
+        String trimmed = location.trim();
+        if (trimmed.contains(",")) {
+            String[] parts = trimmed.split(",");
+            String lastPart = parts[parts.length - 1].trim();
+            if (!lastPart.isEmpty()) {
+                return lastPart;
+            }
+        }
+        if (trimmed.toLowerCase().endsWith(" hq")) {
+            return trimmed.substring(0, trimmed.length() - 3).trim();
+        }
+        return trimmed;
+    }
+
+    /**
      * Fetch a worker by primary key ID.
      */
     @Transactional(readOnly = true)
@@ -99,3 +197,4 @@ public class WorkerService {
         return workerRepository.findById(id);
     }
 }
+

@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "customers")
+@Table(name = "customers", indexes = {
+    @Index(name = "idx_customer_email", columnList = "email"),
+    @Index(name = "idx_customer_phone", columnList = "phone")
+})
 public class Customer {
 
     @Id
@@ -24,11 +27,20 @@ public class Customer {
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
+    @Column(name = "role", length = 30)
+    private String role = "CUSTOMER";
+
     @Column(name = "location", nullable = false, length = 150)
     private String location;
 
     @Column(name = "address", nullable = false, columnDefinition = "TEXT")
     private String address;
+
+    @Column(name = "latitude")
+    private Double latitude = 26.8467;
+
+    @Column(name = "longitude")
+    private Double longitude = 80.9462;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -43,13 +55,15 @@ public class Customer {
         this.password = password;
         this.location = location;
         this.address = address;
+        this.latitude = 26.8467;
+        this.longitude = 80.9462;
     }
 
     @PrePersist
     protected void onCreate() {
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
-        }
+        this.createdAt = LocalDateTime.now();
+        if (this.latitude == null) this.latitude = 26.8467;
+        if (this.longitude == null) this.longitude = 80.9462;
     }
 
     // Getters and Setters
@@ -93,6 +107,14 @@ public class Customer {
         this.password = password;
     }
 
+    public String getRole() {
+        return role != null ? role : "CUSTOMER";
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getLocation() {
         return location;
     }
@@ -107,6 +129,22 @@ public class Customer {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public LocalDateTime getCreatedAt() {

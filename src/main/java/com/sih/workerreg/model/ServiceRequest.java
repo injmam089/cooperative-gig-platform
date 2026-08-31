@@ -1,6 +1,8 @@
 package com.sih.workerreg.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,16 +15,20 @@ public class ServiceRequest {
     private Long requestId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = true)
+    @org.hibernate.annotations.NotFound(action = org.hibernate.annotations.NotFoundAction.IGNORE)
     private Customer customer;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "worker_id", nullable = false)
+    @JoinColumn(name = "worker_id", nullable = true)
+    @org.hibernate.annotations.NotFound(action = org.hibernate.annotations.NotFoundAction.IGNORE)
     private Worker worker;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "service_id", nullable = false)
+    @JoinColumn(name = "service_id", nullable = true)
+    @org.hibernate.annotations.NotFound(action = org.hibernate.annotations.NotFoundAction.IGNORE)
     private ServiceItem service;
+
 
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
@@ -30,11 +36,38 @@ public class ServiceRequest {
     @Column(name = "location", nullable = false, length = 200)
     private String location;
 
-    @Column(name = "preferred_date", nullable = false, length = 50)
-    private String preferredDate;
+    @Column(name = "preferred_date", nullable = false)
+    private LocalDate preferredDate;
 
-    @Column(name = "preferred_time", nullable = false, length = 50)
+    @Column(name = "preferred_time", nullable = false, length = 100)
     private String preferredTime;
+
+    @Column(name = "rating")
+    private Double rating;
+
+    @Column(name = "review_notes", columnDefinition = "TEXT")
+    private String reviewNotes;
+
+    @Column(name = "dispute_reason", columnDefinition = "TEXT")
+    private String disputeReason;
+
+    @Column(name = "dispute_status", length = 30)
+    private String disputeStatus = "NONE";
+
+    @Column(name = "dispute_resolution", columnDefinition = "TEXT")
+    private String disputeResolution;
+
+    @Column(name = "amount_paid")
+    private Double amountPaid;
+
+    @Column(name = "accepted_at")
+    private LocalDateTime acceptedAt;
+
+    @Column(name = "started_at")
+    private LocalDateTime startedAt;
+
+    @Column(name = "completed_at")
+    private LocalDateTime completedAt;
 
     @Column(name = "status", nullable = false, length = 30)
     private String status = "PENDING";
@@ -45,7 +78,7 @@ public class ServiceRequest {
     public ServiceRequest() {
     }
 
-    public ServiceRequest(Customer customer, Worker worker, ServiceItem service, String description, String location, String preferredDate, String preferredTime) {
+    public ServiceRequest(Customer customer, Worker worker, ServiceItem service, String description, String location, LocalDate preferredDate, String preferredTime) {
         this.customer = customer;
         this.worker = worker;
         this.service = service;
@@ -54,6 +87,7 @@ public class ServiceRequest {
         this.preferredDate = preferredDate;
         this.preferredTime = preferredTime;
         this.status = "PENDING";
+        this.disputeStatus = "NONE";
     }
 
     @PrePersist
@@ -63,6 +97,15 @@ public class ServiceRequest {
         }
         if (this.status == null || this.status.trim().isEmpty()) {
             this.status = "PENDING";
+        }
+        if (this.disputeStatus == null || this.disputeStatus.trim().isEmpty()) {
+            this.disputeStatus = "NONE";
+        }
+        if (this.preferredDate == null) {
+            this.preferredDate = LocalDate.now().plusDays(1);
+        }
+        if (this.preferredTime == null || this.preferredTime.trim().isEmpty()) {
+            this.preferredTime = "Morning (9:00 AM - 12:00 PM)";
         }
     }
 
@@ -115,11 +158,11 @@ public class ServiceRequest {
         this.location = location;
     }
 
-    public String getPreferredDate() {
+    public LocalDate getPreferredDate() {
         return preferredDate;
     }
 
-    public void setPreferredDate(String preferredDate) {
+    public void setPreferredDate(LocalDate preferredDate) {
         this.preferredDate = preferredDate;
     }
 
@@ -137,6 +180,78 @@ public class ServiceRequest {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public String getReviewNotes() {
+        return reviewNotes;
+    }
+
+    public void setReviewNotes(String reviewNotes) {
+        this.reviewNotes = reviewNotes;
+    }
+
+    public String getDisputeReason() {
+        return disputeReason;
+    }
+
+    public void setDisputeReason(String disputeReason) {
+        this.disputeReason = disputeReason;
+    }
+
+    public String getDisputeStatus() {
+        return disputeStatus;
+    }
+
+    public void setDisputeStatus(String disputeStatus) {
+        this.disputeStatus = disputeStatus;
+    }
+
+    public String getDisputeResolution() {
+        return disputeResolution;
+    }
+
+    public void setDisputeResolution(String disputeResolution) {
+        this.disputeResolution = disputeResolution;
+    }
+
+    public Double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(Double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
+    public LocalDateTime getAcceptedAt() {
+        return acceptedAt;
+    }
+
+    public void setAcceptedAt(LocalDateTime acceptedAt) {
+        this.acceptedAt = acceptedAt;
+    }
+
+    public LocalDateTime getStartedAt() {
+        return startedAt;
+    }
+
+    public void setStartedAt(LocalDateTime startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public LocalDateTime getCompletedAt() {
+        return completedAt;
+    }
+
+    public void setCompletedAt(LocalDateTime completedAt) {
+        this.completedAt = completedAt;
     }
 
     public LocalDateTime getCreatedAt() {

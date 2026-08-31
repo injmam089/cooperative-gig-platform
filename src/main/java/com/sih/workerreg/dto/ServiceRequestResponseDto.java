@@ -20,35 +20,61 @@ public class ServiceRequestResponseDto {
     private String preferredDate;
     private String preferredTime;
     private String status;
+    private Double rating;
+    private String reviewNotes;
+    private String disputeReason;
+    private String disputeStatus;
+    private String disputeResolution;
+    private Double amountPaid;
+    private LocalDateTime acceptedAt;
+    private LocalDateTime startedAt;
+    private LocalDateTime completedAt;
     private LocalDateTime createdAt;
 
     public ServiceRequestResponseDto() {
     }
 
     public ServiceRequestResponseDto(ServiceRequest req) {
+        if (req == null) return;
         this.requestId = req.getRequestId();
-        if (req.getCustomer() != null) {
-            this.customerId = req.getCustomer().getCustomerId();
-            this.customerName = req.getCustomer().getFullName();
-            this.customerPhone = req.getCustomer().getPhone();
-        }
-        if (req.getWorker() != null) {
-            this.workerId = req.getWorker().getWorkerId();
-            this.workerName = req.getWorker().getFullName();
-            this.workerPhone = req.getWorker().getPhone();
-            this.workerSkill = req.getWorker().getSkill();
-        }
-        if (req.getService() != null) {
-            this.serviceId = req.getService().getServiceId();
-            this.serviceName = req.getService().getServiceName();
-        }
-        this.description = req.getDescription();
-        this.location = req.getLocation();
-        this.preferredDate = req.getPreferredDate();
-        this.preferredTime = req.getPreferredTime();
-        this.status = req.getStatus();
-        this.createdAt = req.getCreatedAt();
+        try {
+            if (req.getCustomer() != null) {
+                this.customerId = req.getCustomer().getCustomerId();
+                this.customerName = req.getCustomer().getFullName();
+                this.customerPhone = req.getCustomer().getPhone();
+            }
+        } catch (Exception ignored) {}
+        try {
+            if (req.getWorker() != null) {
+                this.workerId = req.getWorker().getWorkerId();
+                this.workerName = req.getWorker().getFullName();
+                this.workerPhone = req.getWorker().getPhone();
+                this.workerSkill = req.getWorker().getSkill();
+            }
+        } catch (Exception ignored) {}
+        try {
+            if (req.getService() != null) {
+                this.serviceId = req.getService().getServiceId();
+                this.serviceName = req.getService().getServiceName();
+            }
+        } catch (Exception ignored) {}
+        this.description = req.getDescription() != null ? req.getDescription() : "";
+        this.location = req.getLocation() != null ? req.getLocation() : "";
+        this.preferredDate = req.getPreferredDate() != null ? req.getPreferredDate().toString() : "";
+        this.preferredTime = req.getPreferredTime() != null ? req.getPreferredTime().toString() : "";
+        this.status = req.getStatus() != null ? req.getStatus() : "PENDING";
+        this.rating = req.getRating();
+        this.reviewNotes = req.getReviewNotes();
+        this.disputeReason = req.getDisputeReason();
+        this.disputeStatus = req.getDisputeStatus() != null ? req.getDisputeStatus() : "NONE";
+        this.disputeResolution = req.getDisputeResolution();
+        this.amountPaid = req.getAmountPaid();
+        this.acceptedAt = req.getAcceptedAt();
+        this.startedAt = req.getStartedAt();
+        this.completedAt = req.getCompletedAt();
+        this.createdAt = req.getCreatedAt() != null ? req.getCreatedAt() : LocalDateTime.now();
     }
+
 
     // Getters and Setters
     public Long getRequestId() {
@@ -169,6 +195,78 @@ public class ServiceRequestResponseDto {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public String getReviewNotes() {
+        return reviewNotes;
+    }
+
+    public void setReviewNotes(String reviewNotes) {
+        this.reviewNotes = reviewNotes;
+    }
+
+    public String getDisputeReason() {
+        return disputeReason;
+    }
+
+    public void setDisputeReason(String disputeReason) {
+        this.disputeReason = disputeReason;
+    }
+
+    public String getDisputeStatus() {
+        return disputeStatus;
+    }
+
+    public void setDisputeStatus(String disputeStatus) {
+        this.disputeStatus = disputeStatus;
+    }
+
+    public String getDisputeResolution() {
+        return disputeResolution;
+    }
+
+    public void setDisputeResolution(String disputeResolution) {
+        this.disputeResolution = disputeResolution;
+    }
+
+    public Double getAmountPaid() {
+        return amountPaid;
+    }
+
+    public void setAmountPaid(Double amountPaid) {
+        this.amountPaid = amountPaid;
+    }
+
+    public LocalDateTime getAcceptedAt() {
+        return acceptedAt;
+    }
+
+    public void setAcceptedAt(LocalDateTime acceptedAt) {
+        this.acceptedAt = acceptedAt;
+    }
+
+    public LocalDateTime getStartedAt() {
+        return startedAt;
+    }
+
+    public void setStartedAt(LocalDateTime startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public LocalDateTime getCompletedAt() {
+        return completedAt;
+    }
+
+    public void setCompletedAt(LocalDateTime completedAt) {
+        this.completedAt = completedAt;
     }
 
     public LocalDateTime getCreatedAt() {
