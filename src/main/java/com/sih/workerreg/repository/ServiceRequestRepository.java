@@ -13,6 +13,8 @@ public interface ServiceRequestRepository extends JpaRepository<ServiceRequest, 
 
     List<ServiceRequest> findAllByOrderByCreatedAtDesc();
 
+    List<ServiceRequest> findAllByOrderByRequestIdDesc();
+
     List<ServiceRequest> findByCustomerCustomerIdOrderByCreatedAtDesc(Long customerId);
 
     List<ServiceRequest> findByWorkerWorkerIdOrderByCreatedAtDesc(Long workerId);

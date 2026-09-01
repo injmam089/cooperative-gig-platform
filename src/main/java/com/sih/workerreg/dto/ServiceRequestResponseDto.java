@@ -276,4 +276,68 @@ public class ServiceRequestResponseDto {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
+    // Compatibility getters for frontend property patterns
+    public Long getBookingId() {
+        return requestId;
+    }
+
+    public Double getFinalPrice() {
+        return amountPaid != null ? amountPaid : 299.0;
+    }
+
+    public Double getTotalAmount() {
+        return amountPaid != null ? amountPaid : 299.0;
+    }
+
+    public Double getWorkerEarnings() {
+        return amountPaid != null ? amountPaid : 299.0;
+    }
+
+    public Double getCooperativeCommission() {
+        return 0.0;
+    }
+
+    public Double getCooperativeAllocation() {
+        return 0.0;
+    }
+
+    public Double getPlatformFee() {
+        return 0.0;
+    }
+
+    public String getScheduledDate() {
+        return preferredDate;
+    }
+
+    public String getScheduledTimeSlot() {
+        return preferredTime;
+    }
+
+    public java.util.Map<String, Object> getCustomer() {
+        if (customerId == null && customerName == null) return null;
+        java.util.Map<String, Object> c = new java.util.HashMap<>();
+        c.put("customerId", customerId);
+        c.put("fullName", customerName);
+        c.put("phone", customerPhone);
+        return c;
+    }
+
+    public java.util.Map<String, Object> getWorker() {
+        if (workerId == null && workerName == null) return null;
+        java.util.Map<String, Object> w = new java.util.HashMap<>();
+        w.put("workerId", workerId);
+        w.put("fullName", workerName);
+        w.put("phone", workerPhone);
+        w.put("skill", workerSkill);
+        return w;
+    }
+
+    public java.util.Map<String, Object> getService() {
+        if (serviceId == null && serviceName == null) return null;
+        java.util.Map<String, Object> s = new java.util.HashMap<>();
+        s.put("serviceId", serviceId);
+        s.put("serviceName", serviceName);
+        return s;
+    }
 }

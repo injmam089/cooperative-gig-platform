@@ -113,17 +113,29 @@ public class ServiceRequestService {
 
     @Transactional(readOnly = true)
     public List<ServiceRequestResponseDto> getAllRequests() {
+        List<ServiceRequest> list = null;
         try {
-            return serviceRequestRepository.findAllByOrderByCreatedAtDesc()
-                    .stream()
-                    .map(ServiceRequestResponseDto::new)
-                    .collect(Collectors.toList());
+            list = serviceRequestRepository.findAllByOrderByCreatedAtDesc();
         } catch (Exception e) {
-            return serviceRequestRepository.findAll()
-                    .stream()
-                    .map(ServiceRequestResponseDto::new)
-                    .collect(Collectors.toList());
+            // fallback to ordering by requestId
         }
+        if (list == null || list.isEmpty()) {
+            try {
+                list = serviceRequestRepository.findAllByOrderByRequestIdDesc();
+            } catch (Exception e) {
+                // fallback to unordered findAll
+            }
+        }
+        if (list == null || list.isEmpty()) {
+            try {
+                list = serviceRequestRepository.findAll();
+            } catch (Exception e) {
+                list = java.util.Collections.emptyList();
+            }
+        }
+        return list.stream()
+                .map(ServiceRequestResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

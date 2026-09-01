@@ -5427,7 +5427,8 @@ async function fetchAllTablesData() {
         fetchServicesTable(),
         fetchVerificationTable(),
         fetchComplaintsTable(),
-        fetchNotifications()
+        fetchNotifications(),
+        fetchAdminDashboardStats()
     ]);
     renderHomeNearbyWorkers();
     checkActiveBookingBanner();
@@ -5435,12 +5436,47 @@ async function fetchAllTablesData() {
     renderBookingsHub();
 }
 
+async function fetchAdminDashboardStats() {
+    try {
+        const res = await fetch(`${API.admin}/dashboard`);
+        if (res.ok) {
+            const stats = await res.json();
+            if (stats) {
+                if (stats.totalWorkers != null && (!cachedWorkers || cachedWorkers.length === 0)) {
+                    const wCount = document.getElementById('statWorkerCount');
+                    if (wCount) wCount.textContent = stats.totalWorkers;
+                }
+                if (stats.totalCustomers != null && (!cachedCustomers || cachedCustomers.length === 0)) {
+                    const cCount = document.getElementById('statCustomerCount');
+                    if (cCount) cCount.textContent = stats.totalCustomers;
+                }
+                if (stats.totalBookings != null && (!cachedRequests || cachedRequests.length === 0)) {
+                    const rCount = document.getElementById('statRequestCount');
+                    const rTab = document.getElementById('countRequestsTab');
+                    if (rCount) rCount.textContent = stats.totalBookings;
+                    if (rTab) rTab.textContent = stats.totalBookings;
+                }
+                if (stats.totalServices != null && (!cachedServices || cachedServices.length === 0)) {
+                    const sCount = document.getElementById('statServiceCount');
+                    if (sCount) sCount.textContent = stats.totalServices;
+                }
+            }
+        }
+    } catch (e) {
+        console.debug('Dashboard stats sync', e);
+    }
+}
+
 async function fetchWorkersTable() {
     const tbody = document.getElementById('dbWorkersTableBody');
     try {
-        const res = await fetch(API.workers);
+        let res = await fetch(API.workers);
+        if (!res.ok) {
+            res = await fetch(`${API.admin}/workers`);
+        }
         if (res.ok) {
-            cachedWorkers = await res.json();
+            const data = await res.json();
+            cachedWorkers = Array.isArray(data) ? data : (data.data || data.workers || []);
             const wCount = document.getElementById('statWorkerCount');
             const wTab = document.getElementById('countWorkersTab');
             if (wCount) wCount.textContent = cachedWorkers.length;
@@ -5474,9 +5510,13 @@ async function fetchWorkersTable() {
 async function fetchCustomersTable() {
     const tbody = document.getElementById('dbCustomersTableBody');
     try {
-        const res = await fetch(API.customers);
+        let res = await fetch(API.customers);
+        if (!res.ok) {
+            res = await fetch(`${API.admin}/customers`);
+        }
         if (res.ok) {
-            cachedCustomers = await res.json();
+            const data = await res.json();
+            cachedCustomers = Array.isArray(data) ? data : (data.data || data.customers || []);
             const cCount = document.getElementById('statCustomerCount');
             const cTab = document.getElementById('countCustomersTab');
             if (cCount) cCount.textContent = cachedCustomers.length;
@@ -5508,9 +5548,13 @@ async function fetchCustomersTable() {
 async function fetchRequestsTable() {
     const tbody = document.getElementById('dbRequestsTableBody');
     try {
-        const res = await fetch(API.bookings);
+        let res = await fetch(API.bookings);
+        if (!res.ok) {
+            res = await fetch(`${API.admin}/bookings`);
+        }
         if (res.ok) {
-            cachedRequests = await res.json();
+            const data = await res.json();
+            cachedRequests = Array.isArray(data) ? data : (data.data || data.bookings || data.serviceRequests || data.content || []);
             const rCount = document.getElementById('statRequestCount');
             const rTab = document.getElementById('countRequestsTab');
             if (rCount) rCount.textContent = cachedRequests.length;
@@ -5520,28 +5564,41 @@ async function fetchRequestsTable() {
                 if (cachedRequests.length === 0) {
                     tbody.innerHTML = '<tr><td colspan="10" class="text-center text-muted">No bookings in MySQL table.</td></tr>';
                 } else {
-                    tbody.innerHTML = cachedRequests.map(r => `
-                        <tr>
-                            <td><strong>#${r.requestId || r.bookingId}</strong></td>
-                            <td>${escapeHtml(r.customerName || r.customer?.fullName || (r.customerId ? 'Customer #' + r.customerId : 'Customer'))}</td>
-                            <td>${escapeHtml(r.workerName || r.worker?.fullName || (r.workerId ? 'Worker #' + r.workerId : 'Worker'))}</td>
-                            <td>${escapeHtml(r.serviceName || r.service?.serviceName || 'Service')}</td>
-                            <td>${escapeHtml(r.preferredDate || r.scheduledDate || '')} &bull; ${escapeHtml(r.preferredTime || r.scheduledTimeSlot || '')}</td>
-                            <td><strong>₹${r.finalPrice || 249}</strong></td>
-                            <td style="color: var(--success); font-weight: 700;">₹${r.workerEarnings || 249}</td>
-                            <td style="color: var(--primary);">₹${r.cooperativeCommission || 0}</td>
-                            <td><span class="status-badge status-${(r.status || 'PENDING').toLowerCase()}">${escapeHtml(r.status || 'PENDING')}</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-outline" onclick="openInvoiceModal(${r.requestId || r.bookingId})">🧾 Invoice</button>
-                            </td>
-                        </tr>
-                    `).join('');
+                    tbody.innerHTML = cachedRequests.map(r => {
+                        const bId = r.requestId || r.bookingId || r.id;
+                        const cName = r.customerName || (r.customer && r.customer.fullName) || (r.customerId ? 'Customer #' + r.customerId : 'Customer');
+                        const wName = r.workerName || (r.worker && r.worker.fullName) || (r.workerId ? 'Worker #' + r.workerId : 'Worker');
+                        const sName = r.serviceName || (r.service && r.service.serviceName) || 'Service';
+                        const dateSlot = `${r.preferredDate || r.scheduledDate || ''} • ${r.preferredTime || r.scheduledTimeSlot || ''}`;
+                        const price = r.amountPaid != null ? r.amountPaid : (r.finalPrice || r.totalAmount || 299);
+                        const earnings = r.workerEarnings != null ? r.workerEarnings : price;
+                        const commission = r.cooperativeCommission != null ? r.cooperativeCommission : 0;
+                        const status = (r.status || 'PENDING').toUpperCase();
 
+                        return `
+                            <tr>
+                                <td><strong>#${bId}</strong></td>
+                                <td>${escapeHtml(cName)}</td>
+                                <td>${escapeHtml(wName)}</td>
+                                <td>${escapeHtml(sName)}</td>
+                                <td>${escapeHtml(dateSlot)}</td>
+                                <td><strong>₹${price}</strong></td>
+                                <td style="color: var(--success); font-weight: 700;">₹${earnings}</td>
+                                <td style="color: var(--primary);">₹${commission}</td>
+                                <td><span class="status-badge status-${status.toLowerCase().replace('_', '-')}">${escapeHtml(status)}</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline" onclick="openInvoiceModal(${bId})">🧾 Invoice</button>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
                 }
             }
+        } else {
+            console.error('Failed to fetch bookings from API:', res.status, res.statusText);
         }
     } catch (e) {
-        console.debug('Error fetching requests', e);
+        console.error('Error fetching requests table:', e);
     }
 }
 

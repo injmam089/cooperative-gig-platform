@@ -17,13 +17,19 @@ public class AdminAnalyticsController {
     private final AdminAnalyticsService analyticsService;
     private final com.sih.workerreg.repository.WorkerRepository workerRepository;
     private final com.sih.workerreg.repository.ServiceRequestRepository serviceRequestRepository;
+    private final com.sih.workerreg.service.ServiceRequestService serviceRequestService;
+    private final com.sih.workerreg.service.CustomerService customerService;
 
     public AdminAnalyticsController(AdminAnalyticsService analyticsService,
                                   com.sih.workerreg.repository.WorkerRepository workerRepository,
-                                  com.sih.workerreg.repository.ServiceRequestRepository serviceRequestRepository) {
+                                  com.sih.workerreg.repository.ServiceRequestRepository serviceRequestRepository,
+                                  com.sih.workerreg.service.ServiceRequestService serviceRequestService,
+                                  com.sih.workerreg.service.CustomerService customerService) {
         this.analyticsService = analyticsService;
         this.workerRepository = workerRepository;
         this.serviceRequestRepository = serviceRequestRepository;
+        this.serviceRequestService = serviceRequestService;
+        this.customerService = customerService;
     }
 
     /**
@@ -115,5 +121,33 @@ public class AdminAnalyticsController {
                 .toList();
         return ResponseEntity.ok(complaints);
     }
+
+    /**
+     * GET /api/admin/bookings or GET /api/admin/service-requests
+     * Returns full list of all service requests/bookings directly for admin console.
+     */
+    @GetMapping({"/bookings", "/service-requests"})
+    public ResponseEntity<java.util.List<com.sih.workerreg.dto.ServiceRequestResponseDto>> getAdminBookings() {
+        return ResponseEntity.ok(serviceRequestService.getAllRequests());
+    }
+
+    /**
+     * GET /api/admin/customers
+     * Returns all registered customers for admin console.
+     */
+    @GetMapping("/customers")
+    public ResponseEntity<java.util.List<com.sih.workerreg.dto.CustomerResponseDto>> getAdminCustomers() {
+        return ResponseEntity.ok(customerService.getAllCustomers());
+    }
+
+    /**
+     * GET /api/admin/workers
+     * Returns all registered workers for admin console.
+     */
+    @GetMapping("/workers")
+    public ResponseEntity<java.util.List<com.sih.workerreg.model.Worker>> getAdminWorkers() {
+        return ResponseEntity.ok(workerRepository.findAll());
+    }
 }
+
 

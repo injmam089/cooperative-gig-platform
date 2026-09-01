@@ -37,6 +37,7 @@ public class ServiceRequest {
     private String location;
 
     @Column(name = "preferred_date", nullable = false)
+    @Convert(converter = com.sih.workerreg.config.LocalDateStringConverter.class)
     private LocalDate preferredDate;
 
     @Column(name = "preferred_time", nullable = false, length = 100)

@@ -45,12 +45,18 @@ public class SecurityConfig {
                 .requestMatchers("/", "/index.html", "/style.css", "/app.js", "/favicon.ico", "/error").permitAll()
                 
                 // Public discovery & read endpoints
-                .requestMatchers(HttpMethod.GET, "/api/services/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/workers/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/customers/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/services", "/api/services/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/workers", "/api/workers/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/customers", "/api/customers/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/service-requests", "/api/service-requests/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/bookings", "/api/bookings/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/admin", "/api/admin/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/categories", "/api/categories/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/skills", "/api/skills/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/invoices", "/api/invoices/**").permitAll()
                 
                 // Public authentication & OTP verification endpoints
-                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/auth", "/api/auth/**").permitAll()
                 
                 // Public worker onboarding & login
                 .requestMatchers(HttpMethod.POST, "/api/workers", "/api/workers/login", "/api/workers/logout").permitAll()
@@ -62,7 +68,16 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/admin/login", "/api/admin/logout").permitAll()
                 
                 // Service requests, bookings, admin, customers, AI, workforce, notifications & worker APIs are authorized at controller/session layer
-                .requestMatchers("/api/service-requests/**", "/api/bookings/**", "/api/customers/**", "/api/admin/**", "/api/ai/**", "/api/workforce/**", "/api/notifications/**", "/api/workers/**").permitAll()
+                .requestMatchers(
+                    "/api/service-requests", "/api/service-requests/**",
+                    "/api/bookings", "/api/bookings/**",
+                    "/api/customers", "/api/customers/**",
+                    "/api/admin", "/api/admin/**",
+                    "/api/ai", "/api/ai/**",
+                    "/api/workforce", "/api/workforce/**",
+                    "/api/notifications", "/api/notifications/**",
+                    "/api/workers", "/api/workers/**"
+                ).permitAll()
                 
                 // Any other API requires authentication
                 .anyRequest().authenticated()

@@ -32,13 +32,13 @@ public class SmtpEmailService implements EmailService {
     @Value("${spring.mail.username:}")
     private String mailUsername;
 
-    public SmtpEmailService(JavaMailSender mailSender) {
+    public SmtpEmailService(@org.springframework.beans.factory.annotation.Autowired(required = false) JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
 
     @Override
     public void sendOtpEmail(String toEmail, String recipientName, String otpCode) {
-        if (!mailEnabled) {
+        if (!mailEnabled || mailSender == null) {
             log.info("Email dispatch is disabled via configuration. Skipped sending OTP to {}", maskEmail(toEmail));
             return;
         }
