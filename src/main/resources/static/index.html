@@ -2213,12 +2213,12 @@
                 <div id="tab-ai" class="db-tab-content">
                     <div class="ai-control-center">
                         
-                        <!-- Top Operations Header & Telemetry Badges -->
+                        <!-- 1. TOP INTELLIGENCE HEADER & CONTROLS -->
                         <div class="ai-ops-header">
                             <div class="ai-ops-header-title">
                                 <div class="ai-ops-badge-row">
                                     <span class="ai-pulse-badge" id="aiEngineBadge">
-                                        <span class="pulse-dot-live"></span> AI Engine: Online (Predictive Workforce Analysis)
+                                        <span class="pulse-dot-live"></span> LIVE • AI Analysis Active
                                     </span>
                                     <span class="ai-meta-pill" id="aiLastUpdated">⏱️ Updated: Just now</span>
                                     <span class="ai-meta-pill ai-pill-source" id="aiDataSourceBadge">📊 Source: Live MySQL Database</span>
@@ -2226,7 +2226,7 @@
                                 </div>
                                 <h3 class="ai-title">🧠 AI Workforce Intelligence</h3>
                                 <p class="ai-subtitle">
-                                    Predict demand · Detect shortages · Recommend cooperative action
+                                    Real-time demand, workforce capacity and cooperative dispatch intelligence
                                 </p>
                             </div>
 
@@ -2244,20 +2244,31 @@
 
                                 <!-- Area Filter -->
                                 <div class="ai-select-wrap">
-                                    <label for="aiAreaSelect" class="ai-select-label">Operational Area</label>
+                                    <label for="aiAreaSelect" class="ai-select-label">Location / Locality</label>
                                     <select id="aiAreaSelect" class="ai-select" onchange="changeAiArea(this.value)">
-                                        <option value="All Areas">All Areas</option>
-                                        <option value="Aliganj" selected>Aliganj</option>
+                                        <option value="All Areas" selected>Lucknow (All Localities)</option>
                                         <option value="Gomti Nagar">Gomti Nagar</option>
                                         <option value="Hazratganj">Hazratganj</option>
+                                        <option value="Aliganj">Aliganj</option>
                                         <option value="Indira Nagar">Indira Nagar</option>
+                                        <option value="Mahanagar">Mahanagar</option>
+                                        <option value="Alambagh">Alambagh</option>
+                                        <option value="Kalyanpur">Kalyanpur</option>
+                                        <option value="Telibagh">Telibagh</option>
                                         <option value="Charbagh">Charbagh</option>
+                                        <option value="Ashiyana">Ashiyana</option>
+                                        <option value="Jankipuram">Jankipuram</option>
+                                        <option value="Chowk">Chowk</option>
+                                        <option value="Krishna Nagar">Krishna Nagar</option>
+                                        <option value="Sushant Golf City">Sushant Golf City</option>
+                                        <option value="Rajajipuram">Rajajipuram</option>
+                                        <option value="Vikas Nagar">Vikas Nagar</option>
                                     </select>
                                 </div>
 
                                 <!-- Time Window Filter -->
                                 <div class="ai-select-wrap">
-                                    <label for="aiTimeSelect" class="ai-select-label">Time Window</label>
+                                    <label for="aiTimeSelect" class="ai-select-label">Time Horizon</label>
                                     <select id="aiTimeSelect" class="ai-select" onchange="changeAiTimeWindow(this.value)">
                                         <option value="CURRENT" selected>Current (Real-time)</option>
                                         <option value="3:00 PM">3:00 PM</option>
@@ -2270,10 +2281,10 @@
                                     </select>
                                 </div>
 
-                                <!-- Refresh & View Formula Buttons -->
+                                <!-- Actions -->
                                 <div style="display: flex; gap: 8px; align-items: flex-end;">
                                     <button type="button" class="btn btn-sm btn-primary ai-refresh-btn" onclick="refreshAiWorkforceDashboard()">
-                                        🔄 Refresh AI Prediction
+                                        🔄 Refresh Intelligence
                                     </button>
                                     <button type="button" class="btn btn-sm btn-outline" onclick="toggleAiExplanationModal()">
                                         ℹ️ View Formula
@@ -2282,53 +2293,105 @@
                             </div>
                         </div>
 
-                        <!-- 1. CURRENT AI SITUATION SUMMARY -->
+                        <!-- 2. COMPACT SUMMARY KPI ROW (6 CARDS) -->
+                        <div class="ai-kpi-summary-grid">
+                            <div class="ai-kpi-metric-card">
+                                <div class="ai-kpi-m-icon bg-blue-subtle">🏢</div>
+                                <div class="ai-kpi-m-body">
+                                    <span class="ai-kpi-m-lbl">Workforce Capacity</span>
+                                    <strong class="ai-kpi-m-num" id="aiKpiTotalWorkers">286</strong>
+                                    <span class="ai-kpi-m-desc">Registered artisans in cooperative</span>
+                                </div>
+                            </div>
+                            <div class="ai-kpi-metric-card">
+                                <div class="ai-kpi-m-icon bg-emerald-subtle">👷‍♂️</div>
+                                <div class="ai-kpi-m-body">
+                                    <span class="ai-kpi-m-lbl">Active Workers</span>
+                                    <strong class="ai-kpi-m-num text-emerald" id="aiKpiActiveWorkers">28</strong>
+                                    <span class="ai-kpi-m-desc">Currently on duty / dispatched</span>
+                                </div>
+                            </div>
+                            <div class="ai-kpi-metric-card">
+                                <div class="ai-kpi-m-icon bg-indigo-subtle">⚡</div>
+                                <div class="ai-kpi-m-body">
+                                    <span class="ai-kpi-m-lbl">Available Workers</span>
+                                    <strong class="ai-kpi-m-num text-primary" id="aiKpiAvailWorkers">228</strong>
+                                    <span class="ai-kpi-m-desc">Verified & ready for dispatch</span>
+                                </div>
+                            </div>
+                            <div class="ai-kpi-metric-card">
+                                <div class="ai-kpi-m-icon bg-amber-subtle">🔥</div>
+                                <div class="ai-kpi-m-body">
+                                    <span class="ai-kpi-m-lbl">Demand Level</span>
+                                    <strong class="ai-kpi-m-num text-amber" id="aiKpiDemandLevel">78% High</strong>
+                                    <span class="ai-kpi-m-desc">Peak evening booking pressure</span>
+                                </div>
+                            </div>
+                            <div class="ai-kpi-metric-card">
+                                <div class="ai-kpi-m-icon bg-purple-subtle">🛡️</div>
+                                <div class="ai-kpi-m-body">
+                                    <span class="ai-kpi-m-lbl">Coverage Score</span>
+                                    <strong class="ai-kpi-m-num text-purple" id="aiKpiCoverageScore">94%</strong>
+                                    <span class="ai-kpi-m-desc">15/16 active Lucknow zones</span>
+                                </div>
+                            </div>
+                            <div class="ai-kpi-metric-card">
+                                <div class="ai-kpi-m-icon bg-rose-subtle">📋</div>
+                                <div class="ai-kpi-m-body">
+                                    <span class="ai-kpi-m-lbl">Open Service Requests</span>
+                                    <strong class="ai-kpi-m-num text-rose" id="aiKpiOpenRequests">39 Active</strong>
+                                    <span class="ai-kpi-m-desc">13 pending, 18 accepted, 8 in prog</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. EXECUTIVE AI INSIGHT CARD -->
                         <div class="ai-executive-summary-card" id="aiExecutiveSummaryCard">
                             <div class="ai-exec-header">
                                 <div class="ai-exec-title-block">
-                                    <span class="ai-exec-kicker" id="aiExecKicker">AI SITUATION SUMMARY</span>
-                                    <h2 class="ai-exec-headline" id="aiExecHeadline">ALIGANJ • 5:00 PM</h2>
+                                    <span class="ai-exec-kicker" id="aiExecKicker">AI EXECUTIVE INSIGHT</span>
+                                    <h2 class="ai-exec-headline" id="aiExecHeadline">LUCKNOW METROPOLITAN • REAL-TIME DISPATCH</h2>
                                 </div>
-                                <span class="ai-status-pill badge-crit" id="aiExecStatusPill">CRITICAL WORKFORCE SHORTAGE</span>
+                                <span class="ai-status-pill badge-crit" id="aiExecStatusPill">⚡ HIGH PRIORITY DISPATCH ALERT</span>
                             </div>
 
                             <p class="ai-exec-description" id="aiExecDescription">
-                                "Plumbing demand is critically high in Aliganj (88% intensity)."
+                                "Plumbing currently has the highest workforce pressure in Gomti Nagar."
                             </p>
 
                             <!-- 4 Key Executive Metrics -->
                             <div class="ai-exec-metrics-grid">
                                 <div class="ai-exec-metric-item">
-                                    <span class="ai-exec-m-label">Required Workers</span>
-                                    <strong class="ai-exec-m-val" id="aiExecReqVal">7</strong>
-                                    <span class="ai-exec-m-sub" id="aiExecReqSub">7 workers required</span>
-                                </div>
-                                <div class="ai-exec-metric-item">
-                                    <span class="ai-exec-m-label">Available Workers</span>
-                                    <strong class="ai-exec-m-val" id="aiExecAvailVal">4</strong>
-                                    <span class="ai-exec-m-sub" id="aiExecAvailSub">4 workers available</span>
-                                </div>
-                                <div class="ai-exec-metric-item gap-metric">
-                                    <span class="ai-exec-m-label">Workforce Gap</span>
-                                    <strong class="ai-exec-m-val text-danger" id="aiExecGapVal">3</strong>
-                                    <span class="ai-exec-m-sub" id="aiExecGapSub">3 workers shortage</span>
-                                </div>
-                                <div class="ai-exec-metric-item">
                                     <span class="ai-exec-m-label">Demand Intensity</span>
                                     <strong class="ai-exec-m-val text-danger" id="aiExecStatusVal">88% Critical</strong>
                                     <span class="ai-exec-m-sub" id="aiExecStatusSub">Peak evening surge</span>
+                                </div>
+                                <div class="ai-exec-metric-item">
+                                    <span class="ai-exec-m-label">Available Verified Workers</span>
+                                    <strong class="ai-exec-m-val text-primary" id="aiExecAvailVal">3</strong>
+                                    <span class="ai-exec-m-sub" id="aiExecAvailSub">3 verified plumbers available</span>
+                                </div>
+                                <div class="ai-exec-metric-item">
+                                    <span class="ai-exec-m-label">Estimated Requirement</span>
+                                    <strong class="ai-exec-m-val" id="aiExecReqVal">6</strong>
+                                    <span class="ai-exec-m-sub" id="aiExecReqSub">6 workers required for SLA</span>
+                                </div>
+                                <div class="ai-exec-metric-item gap-metric">
+                                    <span class="ai-exec-m-label">Workforce Shortage</span>
+                                    <strong class="ai-exec-m-val text-danger" id="aiExecGapVal">3</strong>
+                                    <span class="ai-exec-m-sub" id="aiExecGapSub">3 workers deficit</span>
                                 </div>
                             </div>
 
                             <!-- Executive Recommendation & Actions -->
                             <div class="ai-exec-recommendation-bar">
                                 <div class="ai-exec-rec-content">
-                                    <span class="ai-exec-rec-badge">🤝 AI RECOMMENDATION</span>
+                                    <span class="ai-exec-rec-badge">🤝 RECOMMENDED RESPONSE</span>
                                     <p class="ai-exec-rec-text" id="aiExecRecText">
-                                        "Activate 2 nearby verified cooperative plumbers."
+                                        "Activate 3 nearby verified plumbers to safeguard 15-minute response latency."
                                     </p>
-                                    <span class="ai-exec-rec-sub" id="aiExecRecReason" style="font-size: 0.78rem; color: var(--text-secondary);">
-                                        Reason: Projected peak demand exceeds active local workforce capacity.
+                                    <span class="ai-exec-rec-sub" id="aiExecRecReason">
+                                        Reason: Projected peak demand exceeds active local verified capacity.
                                     </span>
                                 </div>
                                 <div class="ai-exec-actions">
@@ -2336,116 +2399,249 @@
                                         ⚡ Activate Recommended Workers
                                     </button>
                                     <button type="button" class="btn btn-outline" onclick="toggleAiExplanationModal()">
-                                        🔍 View Formula
+                                        🔍 Inspect Contributing Factors
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 2. UNIFIED DEMAND ↔ WORKFORCE BALANCE SECTION (ABSORBS HEATMAP & TRADE INTENSITY) -->
-                        <div class="ai-demand-heatmap-section">
-                            <div class="ai-section-header">
-                                <div>
-                                    <h4 class="ai-section-title">
-                                        <span>⚖️</span> Demand ↔ Workforce Balance
-                                    </h4>
-                                    <p class="ai-section-desc">Unified real-time demand score, available supply, required headcount, and capacity balance per trade.</p>
-                                </div>
-                                <div class="ai-legend-row">
-                                    <span class="ai-legend-item"><span class="legend-dot dot-low"></span> Low (0-30%)</span>
-                                    <span class="ai-legend-item"><span class="legend-dot dot-mod"></span> Moderate (31-60%)</span>
-                                    <span class="ai-legend-item"><span class="legend-dot dot-high"></span> High (61-80%)</span>
-                                    <span class="ai-legend-item"><span class="legend-dot dot-crit"></span> Critical (81-100%)</span>
-                                </div>
-                            </div>
+                        <!-- 4. STICKY INTERACTIVE FILTERS & SORTING TOOLBAR -->
+                        <div class="ai-filter-bar-sticky">
+                            <div class="ai-filter-group">
+                                <span class="ai-filter-title">🔍 Filter Intelligence:</span>
+                                <div class="ai-filter-inputs">
+                                    <!-- Service Filter -->
+                                    <select id="aiFilterServiceSelect" class="ai-filter-ctrl" onchange="applyAiInteractiveFilters()">
+                                        <option value="ALL">All Services (10 Trades)</option>
+                                        <option value="Plumbing">🔧 Plumbing</option>
+                                        <option value="AC Repair & Maintenance">❄️ AC Repair & Maintenance</option>
+                                        <option value="Electrical Services">⚡ Electrical Services</option>
+                                        <option value="Cleaning Services">🧹 Cleaning Services</option>
+                                        <option value="Carpenter">🪚 Carpenter</option>
+                                        <option value="Painting">🎨 Painting</option>
+                                        <option value="Mason / Construction">🧱 Mason / Construction</option>
+                                        <option value="Driver">🚗 Driver</option>
+                                        <option value="Cooking Services">🍳 Cooking Services</option>
+                                        <option value="Laundry">🧺 Laundry</option>
+                                    </select>
 
-                            <!-- Unified Trade Balance Cards Grid -->
-                            <div class="ai-services-grid" id="aiServicesDemandGrid">
-                                <!-- Populated dynamically by app.js with unified balance cards -->
+                                    <!-- Demand Level Filter -->
+                                    <select id="aiFilterDemandSelect" class="ai-filter-ctrl" onchange="applyAiInteractiveFilters()">
+                                        <option value="ALL">All Demand Levels</option>
+                                        <option value="CRITICAL">🔴 Critical (81-100%)</option>
+                                        <option value="HIGH">🟠 High (61-80%)</option>
+                                        <option value="ELEVATED">🟡 Elevated (40-60%)</option>
+                                        <option value="STABLE">🟢 Stable (&lt;40%)</option>
+                                    </select>
+
+                                    <!-- Worker Status Filter -->
+                                    <select id="aiFilterWorkerStatusSelect" class="ai-filter-ctrl" onchange="applyAiInteractiveFilters()">
+                                        <option value="ALL">All Worker Verification</option>
+                                        <option value="VERIFIED">✅ Verified Only</option>
+                                        <option value="PENDING">⏳ Pending Verification</option>
+                                    </select>
+
+                                    <!-- Sort Selector -->
+                                    <select id="aiFilterSortSelect" class="ai-filter-ctrl" onchange="applyAiInteractiveFilters()">
+                                        <option value="DEMAND_DESC">Sort: Highest Demand</option>
+                                        <option value="SHORTAGE_DESC">Sort: Largest Shortage</option>
+                                        <option value="COVERAGE_ASC">Sort: Lowest Coverage</option>
+                                        <option value="NAME_ASC">Sort: Service Name (A-Z)</option>
+                                    </select>
+
+                                    <button type="button" class="btn btn-sm btn-outline ai-reset-btn" onclick="resetAiInteractiveFilters()">
+                                        ↺ Reset Filters
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- 3. 24-HOUR DEMAND FORECAST & CONTEXTUAL INSIGHTS -->
-                        <div class="ai-analytics-row">
-                            <!-- 24-Hour Projected Demand Curve -->
-                            <div class="ai-chart-card">
-                                <div class="ai-chart-header">
+                        <!-- 5. TWO-COLUMN ANALYTICS HUB (DEMAND VS SUPPLY + WORKFORCE SHORTAGE PANEL) -->
+                        <div class="ai-analytics-two-col">
+                            <!-- Left: Demand vs Supply Analytics -->
+                            <div class="ai-section-box ai-demand-supply-box">
+                                <div class="ai-section-header">
                                     <div>
-                                        <h4 class="ai-chart-title">📈 24-Hour Demand Forecast</h4>
-                                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 2px 0 0 0;">What is likely to happen next? Click any hour to inspect forecasted load.</p>
+                                        <h4 class="ai-section-title"><span>⚖️</span> Demand vs Supply Analytics</h4>
+                                        <p class="ai-section-desc">Dynamic capacity balance ratio across all 10 service categories.</p>
                                     </div>
-                                    <span class="ai-chart-badge">Hourly Horizon</span>
+                                    <div class="ai-legend-row">
+                                        <span class="ai-legend-item"><span class="legend-dot dot-crit"></span> Critical</span>
+                                        <span class="ai-legend-item"><span class="legend-dot dot-high"></span> High</span>
+                                        <span class="ai-legend-item"><span class="legend-dot dot-mod"></span> Elevated</span>
+                                        <span class="ai-legend-item"><span class="legend-dot dot-low"></span> Stable</span>
+                                    </div>
+                                </div>
+
+                                <div class="ai-demand-supply-list" id="aiDemandSupplyListContainer">
+                                    <!-- Rendered dynamically by app.js -->
+                                </div>
+                            </div>
+
+                            <!-- Right: Workforce Shortage Panel -->
+                            <div class="ai-section-box ai-shortage-panel-box">
+                                <div class="ai-section-header">
+                                    <div>
+                                        <h4 class="ai-section-title"><span>🚨</span> Workforce Shortage Panel</h4>
+                                        <p class="ai-section-desc">Priority sectors with active capacity deficits requiring cooperative activation.</p>
+                                    </div>
+                                    <span class="ai-meta-pill" style="color: #dc2626; border-color: rgba(220, 38, 38, 0.25);">Action Required</span>
+                                </div>
+
+                                <div class="ai-shortage-table-wrap">
+                                    <table class="ai-shortage-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Service</th>
+                                                <th>Req</th>
+                                                <th>Avail</th>
+                                                <th>Shortage</th>
+                                                <th>Demand</th>
+                                                <th>Priority</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="aiShortageTableBody">
+                                            <!-- Rendered dynamically by app.js -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6. SERVICE INTELLIGENCE GRID (ALL 10 SERVICES) -->
+                        <div class="ai-section-box">
+                            <div class="ai-section-header">
+                                <div>
+                                    <h4 class="ai-section-title"><span>📊</span> Service Intelligence Grid</h4>
+                                    <p class="ai-section-desc">Real-time demand, available headcount, requirement, coverage, and status for all categories.</p>
+                                </div>
+                                <span class="ai-section-hint">10 Marketplace Sectors</span>
+                            </div>
+
+                            <div class="ai-service-cards-grid" id="aiServiceCardsGrid">
+                                <!-- Populated dynamically by app.js with modern cards for all 10 services -->
+                            </div>
+                        </div>
+
+                        <!-- 7. GEOSPATIAL WORKFORCE COVERAGE (LUCKNOW LOCALITIES) -->
+                        <div class="ai-section-box">
+                            <div class="ai-section-header">
+                                <div>
+                                    <h4 class="ai-section-title"><span>🗺️</span> Lucknow Geospatial Workforce Coverage</h4>
+                                    <p class="ai-section-desc">Telemetry across 16 residential & commercial sectors. Click any zone to drill down.</p>
+                                </div>
+                                <span class="ai-meta-pill ai-pill-source">16 Lucknow Zones</span>
+                            </div>
+
+                            <div class="ai-locality-coverage-grid" id="aiLocalityCoverageGrid">
+                                <!-- Populated dynamically by app.js -->
+                            </div>
+                        </div>
+
+                        <!-- 8. AI WORKER RECOMMENDATIONS FOR PRIORITY DISPATCH -->
+                        <div class="ai-section-box">
+                            <div class="ai-section-header">
+                                <div>
+                                    <h4 class="ai-section-title"><span>👷‍♂️</span> Recommended Workers for Priority Dispatch</h4>
+                                    <p class="ai-section-desc">AI-ranked candidates ready for immediate standby activation based on credentials, proximity, and rating.</p>
+                                </div>
+                                <span class="ai-section-hint">Top Match Candidates</span>
+                            </div>
+
+                            <div class="ai-candidates-grid" id="aiCandidateWorkersGrid">
+                                <!-- Populated dynamically by app.js -->
+                            </div>
+                        </div>
+
+                        <!-- 9. SMART ALERTS & AI RECOMMENDED ACTIONS -->
+                        <div class="ai-analytics-two-col">
+                            <!-- Smart Alerts -->
+                            <div class="ai-section-box">
+                                <div class="ai-section-header">
+                                    <div>
+                                        <h4 class="ai-section-title"><span>🔔</span> Smart Operational Alerts</h4>
+                                        <p class="ai-section-desc">System alerts categorized by severity level and operational impact.</p>
+                                    </div>
+                                </div>
+                                <div class="ai-smart-alerts-list" id="aiSmartAlertsList">
+                                    <!-- Populated dynamically by app.js -->
+                                </div>
+                            </div>
+
+                            <!-- AI Recommended Actions -->
+                            <div class="ai-section-box">
+                                <div class="ai-section-header">
+                                    <div>
+                                        <h4 class="ai-section-title"><span>🧠</span> AI Recommended Actions</h4>
+                                        <p class="ai-section-desc">Decision-support suggestions with reason, expected impact, and 1-click dispatch.</p>
+                                    </div>
+                                </div>
+                                <div class="ai-rec-actions-list" id="aiRecommendedActionsList">
+                                    <!-- Populated dynamically by app.js -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 10. WORKER VERIFICATION INTELLIGENCE & PERFORMANCE RESPONSE -->
+                        <div class="ai-analytics-two-col">
+                            <!-- Worker Verification Pipeline -->
+                            <div class="ai-section-box">
+                                <div class="ai-section-header">
+                                    <div>
+                                        <h4 class="ai-section-title"><span>🛡️</span> Worker Verification Pipeline</h4>
+                                        <p class="ai-section-desc">Cooperative artisan onboarding status and locked capacity monitoring.</p>
+                                    </div>
+                                </div>
+
+                                <div class="ai-verification-pipeline-body" id="aiVerificationPipelineBody">
+                                    <!-- Populated dynamically by app.js -->
+                                </div>
+                            </div>
+
+                            <!-- Performance / Response Intelligence -->
+                            <div class="ai-section-box">
+                                <div class="ai-section-header">
+                                    <div>
+                                        <h4 class="ai-section-title"><span>⚡</span> Response & Operational Intelligence</h4>
+                                        <p class="ai-section-desc">Derived from completed bookings and live platform telemetry.</p>
+                                    </div>
+                                </div>
+
+                                <div class="ai-performance-metrics-grid" id="aiPerformanceMetricsGrid">
+                                    <!-- Populated dynamically by app.js -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 11. 24-HOUR FORECAST & CONTRIBUTING FACTORS -->
+                        <div class="ai-analytics-two-col">
+                            <!-- 24-Hour Projected Demand Curve -->
+                            <div class="ai-section-box">
+                                <div class="ai-section-header">
+                                    <div>
+                                        <h4 class="ai-section-title"><span>📈</span> 24-Hour Demand Forecast Timeline</h4>
+                                        <p class="ai-section-desc">Hourly load projection curve. Click any hour to inspect forecasted load.</p>
+                                    </div>
+                                    <span class="ai-meta-pill">Hourly Horizon</span>
                                 </div>
                                 <div class="ai-bar-chart-container" id="aiHourlyChartContainer">
                                     <!-- Rendered via CSS/HTML flex bars -->
                                 </div>
                             </div>
 
-                            <!-- Contextual AI Operational Insights -->
-                            <div class="ai-insights-card">
-                                <div class="ai-chart-header">
+                            <!-- Contributing Factors ("Why This Prediction?") -->
+                            <div class="ai-section-box">
+                                <div class="ai-section-header">
                                     <div>
-                                        <h4 class="ai-chart-title">💡 Contextual AI Operational Insights</h4>
-                                        <p style="font-size: 0.78rem; color: var(--text-secondary); margin: 2px 0 0 0;">Derived dynamically from current trade balance analysis.</p>
+                                        <h4 class="ai-section-title"><span>💡</span> Contributing Factors ("Why This Prediction?")</h4>
+                                        <p class="ai-section-desc">Explainable AI multi-factor breakdown and operational weightage.</p>
                                     </div>
-                                    <span class="ai-chart-badge">Live Telemetry</span>
+                                    <span class="ai-meta-pill ai-pill-source">Explainable ML</span>
                                 </div>
                                 <ul class="ai-insights-list" id="aiInsightsList">
                                     <!-- Populated dynamically by app.js -->
                                 </ul>
-                            </div>
-                        </div>
-
-                        <!-- 4. STRUCTURED AI RECOMMENDATION CARD -->
-                        <div class="ai-section-box" id="aiStructuredRecCard">
-                            <div class="ai-section-header">
-                                <div>
-                                    <h4 class="ai-section-title"><span>🧠</span> AI Recommendation & Operational Action</h4>
-                                    <p class="ai-section-desc">Human-in-the-loop decision support: AI analyzes and recommends; human operator reviews and dispatches.</p>
-                                </div>
-                                <span class="ai-meta-pill" style="color: #2563eb; border-color: rgba(37, 99, 235, 0.25);">Operator Review Required</span>
-                            </div>
-
-                            <div class="ai-rec-decision-grid">
-                                <div class="ai-rec-d-item">
-                                    <span class="ai-rec-d-lbl">1. Problem Detected</span>
-                                    <p class="ai-rec-d-val" id="aiRecProblem">Plumbing demand is 88% while only 4 of 7 required plumbers are currently available.</p>
-                                </div>
-                                <div class="ai-rec-d-item">
-                                    <span class="ai-rec-d-lbl">2. Operational Importance</span>
-                                    <p class="ai-rec-d-val" id="aiRecImportance">Projected demand exceeds active local workforce capacity, creating customer wait times exceeding 40 minutes.</p>
-                                </div>
-                                <div class="ai-rec-d-item">
-                                    <span class="ai-rec-d-lbl">3. Recommended Action</span>
-                                    <p class="ai-rec-d-val text-primary" id="aiRecAction">Activate 2 nearby verified cooperative plumbers from standby.</p>
-                                </div>
-                                <div class="ai-rec-d-item">
-                                    <span class="ai-rec-d-lbl">4. Recommended Headcount</span>
-                                    <p class="ai-rec-d-val" id="aiRecHeadcount">2 verified cooperative artisans in Aliganj (within 2.0 km radius).</p>
-                                </div>
-                                <div class="ai-rec-d-item">
-                                    <span class="ai-rec-d-lbl">5. Expected Turnaround Outcome</span>
-                                    <p class="ai-rec-d-val" id="aiRecOutcome">Reduces average doorstep dispatch latency from 42 mins to under 18 mins.</p>
-                                </div>
-                                <div class="ai-rec-d-item">
-                                    <span class="ai-rec-d-lbl">6. Human Approval Rule</span>
-                                    <p class="ai-rec-d-val" id="aiRecRule">AI recommendations do not auto-dispatch. An operator must confirm standby activation.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 5. RECOMMENDED VERIFIED COOPERATIVE WORKERS -->
-                        <div class="ai-section-box">
-                            <div class="ai-section-header">
-                                <div>
-                                    <h4 class="ai-section-title"><span>👷</span> Recommended Verified Cooperative Workers</h4>
-                                    <p class="ai-section-desc">Ranked candidates ready for standby activation based on verified credentials, proximity, and rating.</p>
-                                </div>
-                                <span class="ai-section-hint">Standby Activation Candidates</span>
-                            </div>
-
-                            <div class="ai-candidates-grid" id="aiCandidateWorkersGrid">
-                                <!-- Populated dynamically by app.js -->
                             </div>
                         </div>
 
@@ -2922,6 +3118,29 @@
             <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 10px;">
                 <button type="button" class="btn btn-outline" onclick="toggleAiExplanationModal()">Close</button>
                 <button type="button" class="btn btn-primary" onclick="toggleAiExplanationModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================
+         MODAL: SERVICE WORKERS DRILL-DOWN MODAL
+         ========================================================== -->
+    <div id="aiServiceWorkersModal" class="modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="aiServiceWorkersTitle">
+        <div class="modal-dialog" style="max-width: 720px; border-radius: 18px;">
+            <div class="modal-header">
+                <div>
+                    <h3 id="aiServiceWorkersTitle" style="font-size: 1.25rem; font-weight: 800; margin: 0; color: var(--text-primary);">🔧 Plumbing • Available Workers</h3>
+                    <p id="aiServiceWorkersSubtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin: 2px 0 0 0;">Live verified cooperative artisans in Lucknow network</p>
+                </div>
+                <button type="button" class="modal-close-btn" onclick="closeAiServiceWorkersModal()" aria-label="Close modal" title="Close (Esc)">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 1.25rem; max-height: 65vh; overflow-y: auto;">
+                <div id="aiServiceWorkersList" class="ai-service-workers-list-modal">
+                    <!-- Populated dynamically by app.js -->
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button type="button" class="btn btn-outline" onclick="closeAiServiceWorkersModal()">Close</button>
             </div>
         </div>
     </div>

@@ -903,7 +903,18 @@ public class AiWorkforceIntelligenceService {
         if (a.contains("gomti")) return 26.8520;
         if (a.contains("hazrat")) return 26.8500;
         if (a.contains("indira")) return 26.8830;
+        if (a.contains("mahanagar")) return 26.8720;
+        if (a.contains("alambagh")) return 26.8150;
+        if (a.contains("kalyanpur")) return 26.9020;
+        if (a.contains("telibagh")) return 26.7820;
         if (a.contains("charbagh")) return 26.8320;
+        if (a.contains("ashiyana")) return 26.7920;
+        if (a.contains("jankipuram")) return 26.9120;
+        if (a.contains("chowk")) return 26.8680;
+        if (a.contains("krishna")) return 26.7980;
+        if (a.contains("golf") || a.contains("sushant")) return 26.7720;
+        if (a.contains("rajaji")) return 26.8420;
+        if (a.contains("vikas")) return 26.8950;
         if (a.contains("integral")) return 26.9600;
         return 26.8467;
     }
@@ -915,7 +926,18 @@ public class AiWorkforceIntelligenceService {
         if (a.contains("gomti")) return 80.9980;
         if (a.contains("hazrat")) return 80.9450;
         if (a.contains("indira")) return 80.9850;
+        if (a.contains("mahanagar")) return 80.9520;
+        if (a.contains("alambagh")) return 80.9020;
+        if (a.contains("kalyanpur")) return 80.9620;
+        if (a.contains("telibagh")) return 80.9350;
         if (a.contains("charbagh")) return 80.9210;
+        if (a.contains("ashiyana")) return 80.9120;
+        if (a.contains("jankipuram")) return 80.9420;
+        if (a.contains("chowk")) return 80.9120;
+        if (a.contains("krishna")) return 80.8920;
+        if (a.contains("golf") || a.contains("sushant")) return 81.0120;
+        if (a.contains("rajaji")) return 80.8920;
+        if (a.contains("vikas")) return 80.9620;
         if (a.contains("integral")) return 80.9980;
         return 80.9462;
     }
