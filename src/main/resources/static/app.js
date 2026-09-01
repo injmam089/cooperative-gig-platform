@@ -4862,19 +4862,19 @@ async function verifyWorkerAdmin(workerId, status) {
 function setupEventListeners() {
     // Customer Sign Up Form
     const custForm = document.getElementById('customerForm');
-    if (custForm) {
+    if (custForm && !custForm.getAttribute('onsubmit')) {
         custForm.addEventListener('submit', handleCustomerSubmit);
     }
 
     // Customer Login Form (Email + Password)
     const loginForm = document.getElementById('customerLoginForm');
-    if (loginForm) {
+    if (loginForm && !loginForm.getAttribute('onsubmit')) {
         loginForm.addEventListener('submit', handleCustomerLogin);
     }
 
     // Worker Registration Form
     const workerForm = document.getElementById('workerForm');
-    if (workerForm) {
+    if (workerForm && !workerForm.getAttribute('onsubmit')) {
         workerForm.addEventListener('submit', handleWorkerSubmit);
     }
 
@@ -5179,10 +5179,16 @@ function resetAndShowForm() {
     if (card) card.style.display = 'none';
 }
 
+let isCustomerSubmitting = false;
+
 async function handleCustomerSubmit(e) {
     if (e) {
         e.preventDefault();
         e.stopPropagation();
+    }
+
+    if (isCustomerSubmitting) {
+        return;
     }
 
     const fullNameInp = document.getElementById('custFullName');
@@ -5198,10 +5204,14 @@ async function handleCustomerSubmit(e) {
     const emailError = document.getElementById('custEmailError');
     const passError = document.getElementById('custPasswordError');
     const confirmPassError = document.getElementById('custConfirmPasswordError');
+    const locError = document.getElementById('custLocationError');
+    const addrError = document.getElementById('custAddressError');
 
     const errorAlert = document.getElementById('customerErrorAlert');
     const errorMsg = document.getElementById('customerErrorMessage');
-    const btn = document.getElementById('customerSubmitBtn');
+    const errorList = document.getElementById('customerErrorList');
+    const btn = document.getElementById('custSubmitBtn') || document.getElementById('customerSubmitBtn');
+    const btnSpinner = btn ? btn.querySelector('.btn-spinner') : null;
     const form = document.getElementById('customerForm');
     const successCard = document.getElementById('customerSuccessCard');
 
@@ -5210,6 +5220,9 @@ async function handleCustomerSubmit(e) {
     if (emailError) emailError.textContent = '';
     if (passError) passError.textContent = '';
     if (confirmPassError) confirmPassError.textContent = '';
+    if (locError) locError.textContent = '';
+    if (addrError) addrError.textContent = '';
+    if (errorList) errorList.innerHTML = '';
     if (errorAlert) errorAlert.style.display = 'none';
 
     const fullName = fullNameInp?.value.trim();
@@ -5245,19 +5258,49 @@ async function handleCustomerSubmit(e) {
         return;
     }
 
+    if (!confirmPassword) {
+        if (confirmPassError) confirmPassError.textContent = 'Confirm Password is required.';
+        if (confirmPassInp) confirmPassInp.focus();
+        return;
+    }
+
     if (password !== confirmPassword) {
         if (confirmPassError) confirmPassError.textContent = 'Passwords do not match.';
         if (confirmPassInp) confirmPassInp.focus();
         return;
     }
 
+    if (!location) {
+        if (locError) locError.textContent = 'City / Location is required.';
+        if (locInp) locInp.focus();
+        return;
+    }
+
+    if (!address) {
+        if (addrError) addrError.textContent = 'Street / Flat Address is required.';
+        if (addrInp) addrInp.focus();
+        return;
+    }
+
+    isCustomerSubmitting = true;
     if (btn) btn.disabled = true;
+    if (btnSpinner) btnSpinner.style.display = 'inline-block';
 
     try {
+        const payload = {
+            fullName,
+            phone,
+            email,
+            password,
+            confirmPassword,
+            location,
+            address
+        };
+
         const res = await fetch(API.customers, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ fullName, phone, email, password, location, address }),
+            body: JSON.stringify(payload),
             credentials: 'include'
         });
 
@@ -5277,7 +5320,26 @@ async function handleCustomerSubmit(e) {
             }
             showToast(`Welcome to Cooperative Gig, ${fullName.split(' ')[0]}! 🎉 Account created.`, 'success');
         } else {
-            const message = data.message || 'Registration failed. Please check the provided information.';
+            let message = data.message || 'Registration failed. Please check the provided information.';
+            if (data.errors && typeof data.errors === 'object') {
+                const errorItems = [];
+                for (const [field, msg] of Object.entries(data.errors)) {
+                    errorItems.push(`<li>${escapeHtml(msg)}</li>`);
+                    if (field === 'fullName' && fullNameError) fullNameError.textContent = msg;
+                    if (field === 'phone' && phoneError) phoneError.textContent = msg;
+                    if (field === 'email' && emailError) emailError.textContent = msg;
+                    if (field === 'password' && passError) passError.textContent = msg;
+                    if (field === 'confirmPassword' && confirmPassError) confirmPassError.textContent = msg;
+                    if (field === 'location' && locError) locError.textContent = msg;
+                    if (field === 'address' && addrError) addrError.textContent = msg;
+                }
+                if (errorList && errorItems.length > 0) {
+                    errorList.innerHTML = errorItems.join('');
+                }
+                if (Object.values(data.errors).length === 1) {
+                    message = Object.values(data.errors)[0];
+                }
+            }
             if (errorAlert) {
                 errorAlert.style.display = 'flex';
                 if (errorMsg) errorMsg.textContent = message;
@@ -5292,13 +5354,20 @@ async function handleCustomerSubmit(e) {
         }
         showToast(msg, 'error');
     } finally {
+        isCustomerSubmitting = false;
         if (btn) btn.disabled = false;
+        if (btnSpinner) btnSpinner.style.display = 'none';
     }
 }
 
 function resetCustomerForm() {
     const form = document.getElementById('customerForm');
     const card = document.getElementById('customerSuccessCard');
+    const alert = document.getElementById('customerErrorAlert');
+    const list = document.getElementById('customerErrorList');
+    if (alert) alert.style.display = 'none';
+    if (list) list.innerHTML = '';
+    document.querySelectorAll('#section-customer-signup .field-error').forEach(el => el.textContent = '');
     if (form) {
         form.reset();
         form.style.display = 'block';
