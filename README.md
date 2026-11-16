@@ -1,129 +1,141 @@
 # 🤝 Cooperative Gig Services Platform
 
-### Smart India Hackathon 2026 · Problem Statement 26089
+<p align="center">
+  <strong>Smart India Hackathon 2026 · Problem Statement 26089</strong>
+</p>
 
-> **A cooperative-owned digital marketplace for household and community services — connecting customers with skilled workers, enabling booking and job tracking, supporting cooperative administration, and using AI-assisted workforce intelligence.**
+<p align="center">
+  A Cooperative-Owned Digital Marketplace for Household & Community Services
+</p>
 
-[![Java](https://img.shields.io/badge/Java-17-orange?logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.4-brightgreen?logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
-[![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-blue?logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-ML%20Microservice-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Flutter](https://img.shields.io/badge/Flutter-Mobile%20App-02569B?logo=flutter&logoColor=white)](https://flutter.dev/)
-[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/License-Educational%20Prototype-lightgrey)](#license)
+<p align="center">
+  Connecting customers with skilled local workers through service discovery, transparent bookings, cooperative workforce management, and AI-assisted demand intelligence.
+</p>
+
+<p align="center">
+  <a href="https://cooperative-gig-platform.onrender.com/">🌐 Live Demo</a> •
+  <a href="#-screenshots">Screenshots</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-system-architecture">Architecture</a> •
+  <a href="#-getting-started">Getting Started</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-17-orange?logo=openjdk&logoColor=white" alt="Java 17">
+  <img src="https://img.shields.io/badge/Spring_Boot-3.3.4-6DB33F?logo=springboot&logoColor=white" alt="Spring Boot">
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/Python-FastAPI-3776AB?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Scikit--Learn-ML-F7931E?logo=scikitlearn&logoColor=white" alt="Scikit-Learn">
+  <img src="https://img.shields.io/badge/Flutter-Mobile-02569B?logo=flutter&logoColor=white" alt="Flutter">
+  <img src="https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white" alt="Docker">
+</p>
 
 ---
 
-## 📌 Overview
+## ✨ Overview
 
-**Cooperative Gig Services Platform** is a full-stack prototype built around **SIH Problem Statement 26089**. The platform is designed to create a digital service marketplace where customers can discover local services and workers, workers can manage availability and bookings, and administrators can monitor the platform and cooperative workforce.
+**Cooperative Gig Services Platform** is a full-stack digital service marketplace developed around **Smart India Hackathon 2026 — Problem Statement 26089**.
 
-The repository combines:
+The platform aims to connect customers with skilled local workers while supporting cooperative-based workforce management, service discovery, booking coordination, job tracking, notifications, and administrative operations.
 
-- A **Spring Boot 3 backend**
-- **MySQL 8** persistence with JPA/Hibernate
-- A browser-based **HTML/CSS/JavaScript frontend** served by Spring Boot
-- A standalone **FastAPI + Scikit-Learn AI service**
-- A **Flutter mobile application**
-- Docker Compose orchestration for MySQL, backend, and AI services
-- Seeded demo data for services, customers, workers, and bookings
+Unlike conventional gig marketplaces, the concept focuses on a cooperative-oriented service ecosystem where workers can manage their professional profiles, receive service requests, maintain availability, and build customer trust through ratings and reviews.
 
-The project is structured as a practical hackathon/academic prototype rather than a claim of a fully certified production marketplace.
+The platform combines:
 
----
+- A **Spring Boot 3 backend** for REST APIs and business workflows
+- **MySQL 8** with JPA/Hibernate for relational persistence
+- A browser-based **HTML, CSS and JavaScript frontend**
+- A standalone **Python FastAPI AI microservice**
+- **Scikit-Learn** for demand forecasting and workforce intelligence
+- A **Flutter mobile application foundation**
+- **Docker Compose** for infrastructure orchestration
+
+The repository represents an academic and hackathon prototype, with implemented functionality and proposed production extensions clearly distinguished.
 
 ## 🎯 Problem Statement
 
-Labour Cooperative Societies and Federations have skilled workers across trades such as plumbing, electrical work, cleaning, carpentry, painting, driving, cooking, laundry, and construction. A digital platform can make these workers easier to discover while providing customers with a structured workflow for service requests, worker selection, booking status, notifications, ratings, and dispute handling.
+Labour Cooperative Societies and Federations have skilled workers across trades such as plumbing, electrical work, cleaning, carpentry, painting, driving, cooking, laundry, and construction.
 
-### The platform aims to support
+However, customers may find it difficult to discover nearby verified workers, while workers and cooperative administrators need better tools to coordinate availability, requests, schedules, and service delivery.
 
-- Worker onboarding and profiles
-- Skill-based service discovery
-- Customer registration and authentication
-- Worker availability management
-- Service booking and scheduling
-- Booking lifecycle tracking
-- Worker verification workflows
-- Ratings and reviews
-- Complaints/disputes
-- Notifications
-- Administrative dashboards
-- AI-assisted demand and workforce analysis
-- Location-aware worker discovery
-- Multilingual UI support
-- Flutter mobile access
+The platform addresses this challenge through a centralized digital marketplace.
 
----
+### Project Objectives
 
-# ✨ Key Features
+- Make cooperative workers easier to discover.
+- Enable customers to browse services and request assistance.
+- Support worker onboarding and professional profiles.
+- Improve booking and job-status coordination.
+- Provide administrative workforce management.
+- Introduce AI-assisted demand forecasting.
+- Support location-aware workforce recommendations.
+- Improve operational visibility through notifications and analytics.
+- Provide web and mobile access to platform workflows.
 
-## 👤 Customer Experience
+## 🚀 Features
 
-Customers can:
+### 👤 Customer Experience
 
-- Create an account
-- Log in securely
-- Verify email through OTP flows
-- Browse service categories
-- View worker profiles
-- Search workers by skill
-- Discover workers by city/locality
-- Create service requests
-- Select preferred date and time
-- Track booking status
-- Receive booking notifications
-- Rate completed services
-- Submit reviews
-- Raise disputes/complaints
-- View booking history
+Customers can use the platform to:
 
----
+- Register and log in.
+- Verify email through OTP workflows.
+- Browse service categories.
+- Explore worker profiles.
+- Search workers by skills.
+- Discover workers by city and locality.
+- View worker experience and ratings.
+- Create service requests.
+- Select preferred dates and time slots.
+- View booking progress.
+- Receive booking notifications.
+- Track service requests.
+- Rate completed services.
+- Submit customer reviews.
+- Raise complaints and disputes.
+- View booking history.
 
-## 🧑‍🔧 Worker Portal
+### 🧑‍🔧 Worker Portal
 
-Workers can:
+Workers receive a dedicated interface for managing their professional activities.
 
-- Register with personal and professional information
-- Add skill and experience details
-- Maintain location information
-- Log in using their credentials
-- View their profile
-- Manage availability
-- Configure working schedules
-- Receive booking notifications
-- Accept/reject service requests
-- Progress jobs through the supported lifecycle
-- Track completed work
-- Receive customer ratings
+- Worker registration and authentication
+- Professional profile management
+- Skill and experience information
+- Location and service-area information
+- Availability management
+- Working schedule configuration
+- Incoming booking requests
+- Accept and reject service requests
+- Job-status updates
+- Completed-work tracking
+- Customer ratings and reviews
+- Worker verification status
 
-Worker passwords are hashed using **BCrypt** before persistence.
+Worker passwords are encoded using **BCrypt** before database persistence.
 
----
+### 🏛️ Admin & Cooperative Management
 
-## 🏛️ Admin & Cooperative Management
+The administration module supports centralized platform oversight.
 
-The backend contains administrative functionality for:
+| Module | Capabilities |
+|---|---|
+| Dashboard | Platform metrics and operational overview |
+| Worker Management | Worker listing and profile monitoring |
+| Verification | Review and update worker verification status |
+| Customer Management | View registered customer records |
+| Booking Management | Monitor service requests and booking progress |
+| Dispute Management | Review complaints and manage resolutions |
+| Workforce Intelligence | Inspect AI-assisted workforce insights |
+| Worker Activation | Trigger workforce activation and notification workflows |
 
-- Dashboard metrics
-- Worker listing
-- Worker verification/status updates
-- Customer listing
-- Booking/service-request oversight
-- Complaint/dispute monitoring
-- Dispute resolution
-- AI workforce intelligence
-- Worker activation/standby workflows
-- Platform-level operational analysis
+### 📅 Service Booking System
 
-The seeded data also contains an administrative/federation account for demonstration.
+The booking engine coordinates service requests between customers and workers.
 
----
+Customers can select a service, choose a worker, provide location details, and submit preferred scheduling information.
 
-## 📅 Booking Lifecycle
-
-The service-request layer implements server-side validation around a structured booking lifecycle:
+**Booking lifecycle:**
 
 ```text
 PENDING
@@ -143,7 +155,7 @@ PAID
 RATED
 ```
 
-Alternative states include:
+**Alternative booking states:**
 
 ```text
 CANCELLED
@@ -151,48 +163,100 @@ REJECTED
 DISPUTED
 ```
 
-The backend validates important transitions instead of allowing arbitrary status changes.
+The backend includes validation around important lifecycle transitions.
 
-For example:
+Examples:
 
-- A worker must accept a booking before marking it `ON_THE_WAY`.
-- A job cannot be started directly from an invalid state.
-- A completed/settled booking cannot simply be cancelled.
-- Ratings are constrained to **1.0–5.0**.
-- A worker can only update requests assigned to them when the authenticated worker context is supplied.
+- A worker must accept a booking before proceeding to the travel stage.
+- Invalid job-status transitions are rejected.
+- Completed or settled bookings cannot be cancelled through arbitrary status changes.
+- Ratings are constrained to the range of 1.0–5.0.
+- Worker request updates are checked against the assigned worker context.
 
----
+### 🔔 Notification System
 
-# 🧠 AI Workforce Intelligence
+The platform includes a database-backed notification subsystem.
 
-The project includes a separate Python microservice dedicated to workforce intelligence.
+Notifications support operational events such as:
+
+- New service requests
+- Booking acceptance
+- Worker travel status
+- Job commencement
+- Job completion
+- Booking rejection
+- Customer ratings
+- Disputes
+- Administrative workforce actions
+
+The notification API provides:
+
+```http
+GET   /api/notifications
+GET   /api/notifications/unread-count
+PATCH /api/notifications/{id}/read
+POST  /api/notifications/mark-all-read
+```
+
+### 📍 Location-Aware Worker Discovery
+
+Location information is used to support workforce discovery and analysis.
+
+- City-based worker filtering
+- Skill-based worker filtering
+- Availability filtering
+- Worker latitude and longitude
+- Nearby-worker discovery
+- Geographic distance calculations
+- Area-specific demand analysis
+
+The AI intelligence service uses the **Haversine distance calculation** when evaluating geographic proximity for worker recommendations.
+
+### 🌐 Multilingual Interface
+
+The web interface includes runtime language support for:
+
+- English
+- हिन्दी (Hindi)
+
+The language switcher allows the interface to be presented in either language.
+
+### 💰 Cooperative-Oriented Model
+
+The platform is designed around a cooperative service marketplace that emphasizes direct community connections and transparent service workflows.
+
+The demonstration interface communicates a direct-worker-earnings and low-middleman approach. However, production payment settlement, escrow, and revenue distribution are not implemented as a live financial processing system.
+
+## 🧠 AI Workforce Intelligence
+
+The project includes a standalone Python microservice dedicated to workforce demand forecasting and allocation recommendations.
 
 ### Technology
 
 - Python
 - FastAPI
-- NumPy
-- Pandas
 - Scikit-Learn
-- Random Forest Regressor
+- RandomForestRegressor
+- Pandas
+- NumPy
 
-### AI capabilities
+### AI Capabilities
 
-The service supports:
+The AI service supports:
 
-- Demand forecasting
+- Service demand forecasting
 - Demand scoring
 - Demand-level classification
 - Workforce capacity analysis
-- Shortage detection
+- Localized shortage detection
 - Workforce allocation recommendations
-- Area/district-aware analysis
+- District and locality-aware analysis
 - Time-window analysis
-- Worker recommendation data
-- Explainable operational recommendations
+- Geographic worker recommendations
+- Explainable operational insights
 - Model retraining endpoint
 
-### Demand levels
+### Demand Classification
 
 ```text
 LOW
@@ -201,219 +265,143 @@ HIGH
 CRITICAL
 ```
 
-### AI service flow
+### AI Workforce Flow
 
 ```text
-Platform Data
-     │
-     ├── Workers
-     ├── Bookings
-     └── Services
-            │
-            ▼
-   FastAPI AI Service
-            │
-            ▼
- Random Forest Forecast
-            │
-            ▼
- Demand Score
-            │
-            ├── Demand Level
-            ├── Workforce Gap
-            ├── Shortage Detection
-            └── Allocation Recommendation
+       Platform Information
+                │
+       ┌────────┼────────┐
+       │        │        │
+       ▼        ▼        ▼
+    Workers  Bookings  Services
+       │        │        │
+       └────────┼────────┘
+                │
+                ▼
+        FastAPI AI Service
+                │
+                ▼
+       Random Forest Model
+                │
+                ▼
+          Demand Score
+                │
+       ┌────────┼─────────┐
+       │        │         │
+       ▼        ▼         ▼
+   Demand   Workforce  Shortage
+    Level     Gap     Detection
+                │
+                ▼
+       Allocation Insights
 ```
 
-The model currently trains against generated baseline/synthetic historical data and can also receive platform telemetry from the Spring Boot side.
+The model uses generated baseline/synthetic historical data for training. The Spring Boot workforce intelligence layer also retrieves platform information such as workers, service requests, and services for its operational analysis.
 
----
+AI predictions are decision-support outputs, not guaranteed forecasts.
 
-# 📍 Location-Aware Worker Discovery
+## 📸 Screenshots
 
-The backend stores worker and customer location information and includes latitude/longitude fields for workers.
+Explore the platform's customer, worker, booking, tracking, and administrative interfaces.
 
-The platform supports:
+### 🏠 Platform Dashboard
 
-- City-based worker filtering
-- Skill-based worker filtering
-- Availability filtering
-- Nearby-worker discovery
-- Coordinate-aware distance calculations in workforce intelligence
-- Area-specific demand analysis
+<p align="center">
+  <img src="screenshots/01-platform-dashboard.png" alt="Cooperative Gig Platform Dashboard" width="100%">
+</p>
 
-The AI intelligence layer uses a **Haversine distance calculation** when ranking recommended workers by geographic proximity.
+### 🧠 AI Workforce Intelligence
 
----
+<p align="center">
+  <img src="screenshots/02-ai-workforce-intelligence.png" alt="AI Workforce Intelligence" width="100%">
+</p>
 
-# 🔔 Notification System
+### 🚨 Emergency Services
 
-The Spring Boot application contains a notification subsystem backed by database persistence.
+<p align="center">
+  <img src="screenshots/03-emergency-services.png" alt="Emergency Services Interface" width="100%">
+</p>
 
-Notifications are generated for events such as:
+### 📅 Booking Management
 
-- New booking requests
-- Booking acceptance
-- Worker travelling to the customer
-- Job started
-- Job completed
-- Booking rejection
-- Customer ratings
-- Disputes
-- Administrative workforce actions
+<p align="center">
+  <img src="screenshots/04-my-bookings.png" alt="Customer Booking Management" width="100%">
+</p>
 
-Available notification operations include:
+### 📍 Live Service Tracking
 
-```text
-GET   /api/notifications
-GET   /api/notifications/unread-count
-PATCH /api/notifications/{id}/read
-POST  /api/notifications/mark-all-read
+<p align="center">
+  <img src="screenshots/05-live-service-tracking.png" alt="Live Service Tracking" width="100%">
+</p>
+
+### 🧑‍🔧 Worker Dashboard
+
+<p align="center">
+  <img src="screenshots/06-worker-dashboard.png" alt="Worker Dashboard" width="100%">
+</p>
+
+### 🏛️ Admin Dashboard
+
+<p align="center">
+  <img src="screenshots/07-admin-dashboard.png" alt="Admin Dashboard and Database Inspector" width="100%">
+</p>
+
+## 🏗️ System Architecture
+
+The platform uses a multi-component architecture with Spring Boot as the central backend.
+
+```mermaid
+flowchart TD
+    A["Customer Web Interface"] --> C["Spring Boot Backend"]
+    B["Flutter Mobile App"] --> C
+    C --> D["REST Controllers"]
+    D --> E["Business Services"]
+    E --> F["JPA / Hibernate"]
+    F --> G[("MySQL Database")]
+    E --> H["FastAPI AI Microservice"]
+    H --> I["Scikit-Learn Model"]
+    I --> J["Demand & Workforce Insights"]
+    J --> C
+    C --> K["Notifications & Email"]
 ```
 
----
+### Core Components
 
-# 🌐 Multilingual Interface
+| Component | Responsibility |
+|---|---|
+| Web Frontend | Customer, worker and admin interfaces |
+| Spring Boot | Central application backend |
+| REST Controllers | HTTP request and response handling |
+| Services | Booking and business workflows |
+| Repositories | Database access |
+| JPA/Hibernate | Object-relational mapping |
+| MySQL | Persistent relational storage |
+| FastAPI | AI microservice endpoints |
+| Scikit-Learn | Demand forecasting model |
+| Flutter | Cross-platform mobile client |
 
-The web client includes runtime language support for:
+## 🔄 Core Booking Workflow
 
-- English
-- हिन्दी (Hindi)
-
-The language toggle is implemented in the frontend so the same application can be presented in both languages.
-
----
-
-# 📱 Flutter Mobile Application
-
-The repository contains a Flutter client under:
-
-```text
-mobile_app/
+```mermaid
+flowchart TD
+    A["Customer Login"] --> B["Browse Services"]
+    B --> C["Discover Workers"]
+    C --> D["Choose Worker & Schedule"]
+    D --> E["Create Service Request"]
+    E --> F["Backend Validation"]
+    F --> G[("Persist Booking")]
+    G --> H["Notify Worker"]
+    H --> I{"Worker Decision"}
+    I -->|Accept| J["Worker Updates Job Status"]
+    I -->|Reject| K["Rejected Booking"]
+    J --> L["Service Completion"]
+    L --> M["Customer Rating"]
+    M --> N["Booking History"]
 ```
 
-### Current mobile stack
+## 🧩 Backend Architecture
 
-- Flutter
-- Dart
-- HTTP
-- Provider
-- Shared Preferences
-- Intl
-- Cupertino Icons
-
-The mobile application contains:
-
-```text
-mobile_app/
-├── lib/
-│   ├── main.dart
-│   ├── models/
-│   │   └── models.dart
-│   └── services/
-│       └── api_service.dart
-├── pubspec.yaml
-└── README.md
-```
-
-The mobile client is designed to consume the backend REST API.
-
----
-
-# 🏗️ System Architecture
-
-```text
-                         ┌──────────────────────────┐
-                         │       Customer Web       │
-                         │   HTML / CSS / JavaScript│
-                         └────────────┬─────────────┘
-                                      │
-                                      │ REST
-                                      ▼
-┌──────────────────┐       ┌──────────────────────────┐
-│ Flutter Mobile   │──────►│     Spring Boot 3       │
-│ Application      │ REST  │       Backend           │
-└──────────────────┘       │                          │
-                           │ Controllers              │
-                           │ Services                 │
-                           │ Repositories             │
-                           │ JPA / Hibernate          │
-                           │ Security / Validation    │
-                           └───────┬───────────┬──────┘
-                                   │           │
-                                   │           │ HTTP
-                                   │           ▼
-                                   │   ┌──────────────────┐
-                                   │   │ FastAPI AI       │
-                                   │   │ Workforce Engine  │
-                                   │   │                  │
-                                   │   │ Random Forest    │
-                                   │   │ NumPy / Pandas   │
-                                   │   └──────────────────┘
-                                   │
-                                   ▼
-                         ┌─────────────────────┐
-                         │      MySQL 8        │
-                         │                     │
-                         │ Customers           │
-                         │ Workers             │
-                         │ Services            │
-                         │ Requests            │
-                         │ Notifications       │
-                         │ OTP records         │
-                         └─────────────────────┘
-```
-
----
-
-# 🔄 Core Booking Data Flow
-
-```text
-Customer
-   │
-   ▼
-Select Service
-   │
-   ▼
-Find Worker
-   │
-   ▼
-Choose Date / Time
-   │
-   ▼
-Create Service Request
-   │
-   ▼
-Spring Boot Validation
-   │
-   ├───────────────► MySQL
-   │
-   └───────────────► Notification
-                         │
-                         ▼
-                       Worker
-                         │
-                         ▼
-                  Accept / Reject
-                         │
-                         ▼
-                  Job Status Updates
-                         │
-                         ▼
-                    Completion
-                         │
-                         ▼
-                    Customer Rating
-                         │
-                         ▼
-                 Booking History
-```
-
----
-
-# 🧩 Backend Architecture
-
-The Java application follows a layered architecture:
+The Java application follows a layered architecture.
 
 ```text
 Controller
@@ -427,119 +415,276 @@ JPA Entity
 MySQL
 ```
 
-### Main backend layers
+### Backend Layers
 
 | Layer | Responsibility |
 |---|---|
-| Controllers | REST endpoints and request/response handling |
-| DTOs | Input/output data transfer |
-| Services | Business logic and workflows |
-| Repositories | Database access |
+| Controllers | REST API endpoints |
+| DTOs | Request and response data transfer |
+| Services | Business rules and workflows |
+| Repositories | Data access and database operations |
 | Models | JPA entities |
-| Security | Password encoding, authentication configuration, CORS and authorization configuration |
-| Exception Handler | Centralized API error handling |
-| Initializer | Demo/service seed data |
+| Security | Authentication and authorization configuration |
+| Exception Handler | Centralized error handling |
+| Initializer | Demonstration data initialization |
 
----
+## 🗄️ Database Architecture
 
-# 📂 Project Structure
+The platform uses MySQL 8 with JPA/Hibernate.
 
-```text
-cooperative-gig-platform/
-│
-├── pom.xml
-├── mvnw
-├── mvnw.cmd
-├── Dockerfile
-├── docker-compose.yml
-├── schema.sql
-├── .gitignore
-│
-├── database/
-│   └── demo_seed_large.sql
-│
-├── ai_service/
-│   ├── Dockerfile
-│   ├── main.py
-│   ├── model.py
-│   ├── requirements.txt
-│   └── README.md
-│
-├── mobile_app/
-│   ├── lib/
-│   │   ├── main.dart
-│   │   ├── models/
-│   │   │   └── models.dart
-│   │   └── services/
-│   │       └── api_service.dart
-│   ├── pubspec.yaml
-│   └── README.md
-│
-└── src/
-    ├── main/
-    │   ├── java/com/sih/workerreg/
-    │   │   ├── config/
-    │   │   ├── controller/
-    │   │   ├── dto/
-    │   │   ├── exception/
-    │   │   ├── model/
-    │   │   ├── repository/
-    │   │   ├── security/
-    │   │   └── service/
-    │   │
-    │   └── resources/
-    │       ├── application.properties
-    │       └── static/
-    │           ├── index.html
-    │           ├── style.css
-    │           └── app.js
-    │
-    └── test/
-        ├── java/
-        └── resources/
+### Core Entities
+
+| Entity | Description |
+|---|---|
+| `customers` | Customer and administrator records |
+| `workers` | Worker profiles, skills and availability |
+| `services` | Service catalogue |
+| `service_requests` | Customer bookings and job progress |
+| `notifications` | User notification records |
+| `otp_verifications` | OTP verification workflow data |
+
+### Database Relationships
+
+```mermaid
+erDiagram
+    CUSTOMERS ||--o{ SERVICE_REQUESTS : creates
+    WORKERS ||--o{ SERVICE_REQUESTS : handles
+    SERVICES ||--o{ SERVICE_REQUESTS : categorizes
+    CUSTOMERS ||--o{ NOTIFICATIONS : receives
+    WORKERS ||--o{ NOTIFICATIONS : receives
+
+    CUSTOMERS {
+        long customer_id
+        string name
+        string email
+        string phone
+        string role
+        string password
+    }
+
+    WORKERS {
+        long worker_id
+        string name
+        string email
+        string skill
+        string location
+        string verification_status
+    }
+
+    SERVICES {
+        long service_id
+        string name
+        string description
+    }
+
+    SERVICE_REQUESTS {
+        long request_id
+        long customer_id
+        long worker_id
+        long service_id
+        string status
+        double amount_paid
+        double rating
+    }
 ```
 
----
+### Seeded Service Categories
 
-# 🛠️ Technology Stack
+The demonstration dataset includes ten service categories:
 
-## Backend
+1. Plumbing
+2. AC Repair & Maintenance
+3. Cooking Services
+4. Driver
+5. Electrical Services
+6. Cleaning Services
+7. Carpenter
+8. Painting
+9. Mason / Construction
+10. Laundry
+
+## 🔌 REST API Overview
+
+The Spring Boot backend exposes REST endpoints for the platform's core modules.
+
+### Customer APIs
+
+```http
+POST /api/customers
+POST /api/customers/login
+POST /api/customers/logout
+POST /api/customers/send-otp
+POST /api/customers/verify-otp
+
+GET  /api/customers
+GET  /api/customers/{id}
+GET  /api/customers/me
+```
+
+### Worker APIs
+
+```http
+POST /api/workers
+POST /api/workers/login
+POST /api/workers/logout
+
+GET  /api/workers
+GET  /api/workers/{id}
+GET  /api/workers/me
+GET  /api/workers/nearby
+
+PUT  /api/workers/{id}/availability
+PUT  /api/workers/{id}/schedule
+```
+
+### Service APIs
+
+```http
+GET /api/services
+GET /api/services/{id}
+```
+
+### Booking APIs
+
+The service-request controller is mapped to both `/api/service-requests` and `/api/bookings`.
+
+Representative operations include:
+
+```http
+POST  /api/service-requests
+GET   /api/service-requests/{id}
+PATCH /api/service-requests/{id}/status
+
+POST  /api/service-requests/{id}/rate
+POST  /api/service-requests/{id}/dispute
+POST  /api/service-requests/{id}/resolve-dispute
+```
+
+### Admin APIs
+
+```http
+POST  /api/admin/login
+POST  /api/admin/logout
+
+GET   /api/admin/dashboard
+GET   /api/admin/workers
+GET   /api/admin/customers
+GET   /api/admin/bookings
+GET   /api/admin/complaints
+
+PATCH /api/admin/workers/{id}/verify
+```
+
+### Workforce Intelligence APIs
+
+```http
+GET  /api/ai/intelligence
+GET  /api/workforce/predictions
+GET  /api/admin/ai/intelligence
+
+POST /api/workforce/activate-worker/{workerId}
+POST /api/admin/ai/notify-worker/{workerId}
+```
+
+## 🤖 AI Service API
+
+The standalone FastAPI service runs on port `8000`.
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/health` | Service health |
+| GET | `/ai/workforce-intelligence` | Workforce insights |
+| POST | `/ai/workforce-intelligence` | Workforce intelligence request |
+| GET | `/predict/demand` | Demand forecasting |
+| GET | `/predict/workforce-allocation` | Workforce allocation |
+| POST | `/train` | Model retraining |
+
+### Demand Prediction Example
+
+```http
+GET /predict/demand?category=Plumbing&district=Lucknow&dayOfWeek=6&hourOfDay=17&isEmergency=0&activeWorkers=8
+```
+
+### Interactive API Documentation
+
+When the AI service is running, open:
+
+```text
+http://localhost:8000/docs
+```
+
+FastAPI provides interactive Swagger documentation for the service endpoints.
+
+## 📱 Flutter Mobile Application
+
+The repository includes a Flutter application foundation under `mobile_app/`.
+
+### Mobile Technology Stack
+
+- Flutter
+- Dart
+- HTTP
+- Provider
+- Shared Preferences
+- Intl
+- Cupertino Icons
+
+### Current Structure
+
+```text
+mobile_app/
+├── lib/
+│   ├── main.dart
+│   ├── models/
+│   │   └── models.dart
+│   └── services/
+│       └── api_service.dart
+│
+├── pubspec.yaml
+└── README.md
+```
+
+The mobile client is designed to consume the Spring Boot REST APIs.
+
+## 🧰 Technology Stack
+
+### Backend
 
 | Technology | Purpose |
 |---|---|
 | Java 17 | Backend language |
 | Spring Boot 3.3.4 | Application framework |
-| Spring Web | REST API |
+| Spring Web | REST APIs |
 | Spring Data JPA | Persistence abstraction |
 | Hibernate | ORM |
-| Spring Validation | Request validation |
 | Spring Security | Security configuration |
+| Spring Validation | Request validation |
 | BCrypt | Password hashing |
 | JJWT 0.12.6 | JWT library dependency |
-| Spring Mail | Transactional email / OTP support |
-| MySQL Connector/J | MySQL connectivity |
+| Spring Mail | Email and OTP support |
+| MySQL Connector/J | Database connectivity |
 | H2 | Automated test database |
 
-> **Note:** The repository contains a JJWT dependency, while the current security configuration also uses HTTP session-based authentication for several application workflows. The README intentionally does not describe the platform as a JWT-only architecture.
-
-## Frontend
+### Frontend
 
 - HTML5
 - CSS3
 - Vanilla JavaScript
-- Responsive UI
-- Runtime English/Hindi localization
+- Responsive layouts
+- English/Hindi localization
 
-## AI
+### AI / Machine Learning
 
-- Python
-- FastAPI
-- Scikit-Learn
-- RandomForestRegressor
-- Pandas
-- NumPy
+| Technology | Purpose |
+|---|---|
+| Python | AI service language |
+| FastAPI | AI REST service |
+| Scikit-Learn | Machine learning |
+| RandomForestRegressor | Demand forecasting |
+| Pandas | Data processing |
+| NumPy | Numerical processing |
 
-## Mobile
+### Mobile
 
 - Flutter
 - Dart
@@ -548,370 +693,194 @@ cooperative-gig-platform/
 - Shared Preferences
 - Intl
 
-## Database
+### Database & DevOps
 
-- MySQL 8+
+- MySQL 8
 - JPA/Hibernate
-- SQL seed scripts
-
-## DevOps
-
+- SQL
 - Docker
 - Docker Compose
 - Maven Wrapper
-- Git/GitHub
+- Git and GitHub
 
----
+## 🔐 Authentication & Security
 
-# 🗃️ Database Model
+The backend includes several security-related components.
 
-The core relational model includes:
-
-```text
-customers
-    │
-    └──────────────┐
-                   │
-workers ───────────┼──► service_requests ◄── services
-                   │
-                   └──► notifications
-
-otp_verifications
-```
-
-### Core entities
-
-#### `customers`
-
-Stores:
-
-- Customer identity
-- Phone
-- Email
-- Password hash
-- Role
-- Location
-- Address
-- Coordinates
-- Creation timestamp
-
-#### `workers`
-
-Stores:
-
-- Worker identity
-- Contact information
-- Skill
-- Experience
-- Location
-- Latitude/longitude
-- Availability
-- Verification status
-- Rating information
-- Completed-job count
-- Profile metadata
-
-#### `services`
-
-Stores:
-
-- Service name
-- Description
-- Icon
-- Pricing-related fields
-- Active state
-
-The seeded project contains ten service categories including:
-
-```text
-Plumbing
-AC Repair & Maintenance
-Cooking Services
-Driver
-Electrical Services
-Cleaning Services
-Carpenter
-Painting
-Mason / Construction
-Laundry
-```
-
-#### `service_requests`
-
-Stores:
-
-- Customer
-- Worker
-- Service
-- Description
-- Location
-- Preferred date/time
-- Booking status
-- Rating/review
-- Timestamps
-- Dispute information
-
-#### `notifications`
-
-Stores user-facing platform notifications.
-
-#### `otp_verifications`
-
-Stores OTP verification workflow data.
-
----
-
-# 🔐 Security
-
-The project includes several security-oriented components:
-
-- Spring Security
+- Spring Security configuration
 - BCrypt password hashing
-- Authentication services
-- OTP verification flows
-- Session-aware administrative operations
+- Customer and worker authentication workflows
+- OTP verification
+- Session-aware application operations
 - Request validation
 - Centralized exception handling
 - CORS configuration
-- Environment-based database configuration
+- Environment-driven database configuration
 
-### Important deployment rule
+**Authentication implementation note:** The project includes JJWT libraries in Maven dependencies, while the current Spring Security configuration also uses session-based authentication for application workflows. The repository should not be described as a fully JWT-only authentication architecture.
 
-Do **not** commit real:
+### Production Security Checklist
 
-- Database passwords
-- SMTP credentials
-- API keys
-- JWT secrets
-- Production credentials
+Before production use, review:
 
-Use environment variables or a local `.env` configuration instead.
+- Endpoint-level authorization
+- Session and CSRF strategy
+- CORS allowlists
+- Rate limiting
+- Brute-force protection
+- Secret management
+- HTTPS enforcement
+- Security headers
+- Audit logging
+- Personal information minimization
+- OTP expiry and verification limits
+- Database access permissions
+- Secure document handling
+- Dependency vulnerability scanning
 
----
+Never commit real database passwords, SMTP credentials, JWT secrets, API keys, or production configuration to GitHub.
 
-# 🔌 REST API
+## ⚙️ Configuration
 
-The backend exposes REST endpoints for the main platform modules.
+The Spring Boot application uses environment-driven database and email configuration.
 
-## Customers
+### Database Variables
 
-```http
-POST /api/customers
-POST /api/customers/login
-POST /api/customers/logout
-POST /api/customers/send-otp
-POST /api/customers/verify-otp
-GET  /api/customers
-GET  /api/customers/{id}
-GET  /api/customers/me
-```
-
-## Workers
-
-```http
-POST /api/workers
-POST /api/workers/login
-POST /api/workers/logout
-GET  /api/workers
-GET  /api/workers/{id}
-GET  /api/workers/me
-GET  /api/workers/nearby
-PUT  /api/workers/{id}/availability
-PUT  /api/workers/{id}/schedule
-```
-
-## Services
-
-```http
-GET /api/services
-GET /api/services/{id}
-```
-
-## Service Requests
-
-The booking module supports operations for:
-
-```text
-Create request
-List requests
-Get request by ID
-Update lifecycle status
-Rate service
-Raise dispute
-Resolve dispute
-```
-
-Representative routes include:
-
-```http
-POST /api/service-requests
-GET  /api/service-requests
-GET  /api/service-requests/{id}
-POST /api/service-requests/{id}/rate
-POST /api/service-requests/{id}/dispute
-POST /api/service-requests/{id}/resolve-dispute
-```
-
-## Notifications
-
-```http
-GET   /api/notifications
-GET   /api/notifications/unread-count
-PATCH /api/notifications/{id}/read
-POST  /api/notifications/mark-all-read
-```
-
-## Admin
-
-```http
-POST  /api/admin/login
-POST  /api/admin/logout
-GET   /api/admin/dashboard
-GET   /api/admin/workers
-GET   /api/admin/customers
-GET   /api/admin/bookings
-GET   /api/admin/complaints
-PATCH /api/admin/workers/{id}/verify
-```
-
-## AI Workforce Intelligence
-
-Spring Boot exposes AI-facing routes such as:
-
-```http
-GET  /api/ai/intelligence
-GET  /api/workforce/predictions
-GET  /api/admin/ai/intelligence
-POST /api/workforce/activate-worker/{workerId}
-POST /api/admin/ai/notify-worker/{workerId}
-```
-
----
-
-# 🤖 AI Service API
-
-The standalone FastAPI service runs on port `8000`.
-
-### Health
-
-```http
-GET /health
-```
-
-### Workforce Intelligence
-
-```http
-GET  /ai/workforce-intelligence
-POST /ai/workforce-intelligence
-```
-
-### Demand Prediction
-
-```http
-GET /predict/demand
-```
-
-Example:
-
-```text
-/predict/demand
-  ?category=Plumbing
-  &district=Lucknow
-  &dayOfWeek=6
-  &hourOfDay=17
-  &isEmergency=0
-  &activeWorkers=8
-```
-
-### Workforce Allocation
-
-```http
-GET /predict/workforce-allocation
-```
-
-### Model Retraining
-
-```http
-POST /train
-```
-
-### Swagger UI
-
-When the AI service is running:
-
-```text
-http://localhost:8000/docs
-```
-
----
-
-# 🚀 Quick Start
-
-## Option 1 — Docker Compose
-
-The easiest way to start the main infrastructure is:
-
-```bash
-git clone https://github.com/injmam089/cooperative-gig-platform.git
-cd cooperative-gig-platform
-
-docker compose up --build
-```
-
-Docker Compose starts:
-
-```text
-MySQL        → 3306 (internal container network)
-AI Service   → http://localhost:8000
-Backend      → http://localhost:8088
-```
-
-The backend waits for the MySQL health check before starting.
-
----
-
-# ☕ Option 2 — Run Spring Boot Locally
-
-## Prerequisites
-
-Install:
-
-- JDK 17+
-- MySQL 8+
-- Git
-- Maven optional because the repository includes Maven Wrapper
-
-### Clone
-
-```bash
-git clone https://github.com/injmam089/cooperative-gig-platform.git
-cd cooperative-gig-platform
-```
-
-### Configure database
-
-The application reads database configuration through environment variables.
-
-Typical values:
-
-```text
+```env
 DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=sih_db
 DB_USERNAME=root
-DB_PASSWORD=your_password
+DB_PASSWORD=replace-with-your-password
 ```
 
-You can also configure the equivalent Spring datasource variables.
+Equivalent Spring datasource properties can also be supplied:
 
-### Windows
+```env
+SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/sih_db
+SPRING_DATASOURCE_USERNAME=root
+SPRING_DATASOURCE_PASSWORD=replace-with-your-password
+```
+
+### Email / OTP Variables
+
+```env
+MAIL_HOST=smtp-relay.brevo.com
+MAIL_PORT=587
+MAIL_USERNAME=your-smtp-username
+MAIL_PASSWORD=your-smtp-password
+MAIL_FROM=no-reply@example.com
+MAIL_FROM_NAME=Cooperative Gig Services
+MAIL_ENABLED=true
+```
+
+### AI Service URL
+
+The backend supports configuration of its AI service base URL through:
+
+```text
+ai.service.url
+```
+
+For local development, the AI service normally runs at:
+
+```text
+http://localhost:8000
+```
+
+For container networking, configure the backend to use the AI service's internal Docker hostname and port.
+
+Create your own local environment configuration. Do not commit real credentials.
+
+## 🐳 Docker Architecture
+
+Docker Compose defines three main services:
+
+| Service | Purpose | Port |
+|---|---|---|
+| `mysql-db` | MySQL database | Internal 3306 |
+| `backend` | Spring Boot application | 8088 |
+| `ai-service` | FastAPI AI service | 8000 |
+
+### Infrastructure Flow
+
+```mermaid
+flowchart TD
+    A["Docker Compose"] --> B["MySQL 8"]
+    A --> C["Spring Boot Backend"]
+    A --> D["FastAPI AI Service"]
+    C --> B
+    C --> D
+    C --> E["Web Frontend"]
+    B --> F[("Persistent MySQL Volume")]
+```
+
+The backend service waits for the MySQL health check before starting.
+
+The Compose file contains demonstration database configuration. Replace demonstration credentials and configure the AI service URL appropriately before using the stack beyond local development.
+
+## 🚀 Getting Started
+
+Choose one of the following options to run the platform.
+
+### Prerequisites
+
+Install the following tools:
+
+- JDK 17 or newer
+- MySQL 8 or newer
+- Python 3.9 or newer
+- Flutter 3.x or compatible SDK
+- Docker and Docker Compose
+- Git
+
+Maven is optional because the repository includes the Maven Wrapper.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/injmam089/cooperative-gig-platform.git
+
+cd cooperative-gig-platform
+```
+
+### 2. Option A — Run with Docker Compose
+
+The Docker Compose configuration starts MySQL, the backend, and the AI service.
+
+```bash
+docker compose up --build
+```
+
+Expected service endpoints:
+
+```text
+Web Application:
+http://localhost:8088
+
+AI Service:
+http://localhost:8000
+
+AI Swagger Documentation:
+http://localhost:8000/docs
+```
+
+The database listens on port `3306` inside the Docker network.
+
+Before relying on integrated AI functionality, verify that the backend's `ai.service.url` points to the AI container hostname.
+
+### 3. Option B — Run Spring Boot Locally
+
+Configure a local MySQL instance and provide the required database environment variables.
+
+**Windows:**
 
 ```powershell
 .\mvnw.cmd clean package
 .\mvnw.cmd spring-boot:run
 ```
 
-### Linux / macOS
+**Linux / macOS:**
 
 ```bash
 chmod +x mvnw
@@ -920,21 +889,21 @@ chmod +x mvnw
 ./mvnw spring-boot:run
 ```
 
-### Open the application
+Open the application:
 
 ```text
 http://localhost:8088
 ```
 
----
+### 4. Option C — Run the AI Service Locally
 
-# 🐍 Option 3 — Run AI Service Locally
+Navigate to the AI service directory:
 
 ```bash
 cd ai_service
 ```
 
-### Windows
+**Windows:**
 
 ```powershell
 python -m venv venv
@@ -945,7 +914,7 @@ pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-### Linux / macOS
+**Linux / macOS:**
 
 ```bash
 python3 -m venv venv
@@ -956,17 +925,21 @@ pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Then open:
+Open the API documentation:
 
 ```text
 http://localhost:8000/docs
 ```
 
----
+### 5. Option D — Run the Flutter Application
 
-# 📱 Run the Flutter Application
+Ensure Flutter is installed:
 
-Make sure Flutter is installed.
+```bash
+flutter doctor
+```
+
+Navigate to the mobile application:
 
 ```bash
 cd mobile_app
@@ -975,18 +948,11 @@ flutter pub get
 flutter run
 ```
 
-The mobile API base URL is configured in the Flutter API service and may need to be adjusted depending on whether the app is running on:
+The API base URL may need to be adjusted depending on whether the application runs on an Android emulator, physical device, iOS simulator, or desktop environment.
 
-- Android emulator
-- Physical Android device
-- iOS simulator
-- Local desktop environment
+For physical devices, use the development machine's LAN IP instead of `localhost` where appropriate.
 
-For a physical device, `localhost` refers to the device itself, so use the development machine's LAN IP where appropriate.
-
----
-
-# 🧪 Testing
+## 🧪 Testing
 
 The backend includes automated tests under:
 
@@ -994,75 +960,39 @@ The backend includes automated tests under:
 src/test/
 ```
 
-Run:
+Run the test suite:
 
-### Windows
+**Windows:**
 
 ```powershell
 .\mvnw.cmd test
 ```
 
-### Linux / macOS
+**Linux / macOS:**
 
 ```bash
 ./mvnw test
 ```
 
-The repository contains an integration test covering seeded database behavior.
+The repository includes an integration test covering seeded database behavior and application startup/database interactions.
 
----
+## 📜 Useful Development Commands
 
-# 🧰 Useful Development Commands
+| Command | Description |
+|---|---|
+| `./mvnw clean package` | Build the Spring Boot application |
+| `./mvnw spring-boot:run` | Run the backend |
+| `./mvnw test` | Run backend tests |
+| `uvicorn main:app --host 0.0.0.0 --port 8000 --reload` | Run AI service |
+| `docker compose up --build` | Build and start container services |
+| `docker compose down` | Stop container services |
+| `docker compose down -v` | Stop services and remove the MySQL volume |
 
-### Build
+> **Warning:** `docker compose down -v` removes the persistent MySQL Docker volume and deletes the database data stored in it.
 
-```bash
-./mvnw clean package
-```
+## 🔑 Demo Accounts
 
-### Run
-
-```bash
-./mvnw spring-boot:run
-```
-
-### Test
-
-```bash
-./mvnw test
-```
-
-### AI service
-
-```bash
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-### Docker
-
-```bash
-docker compose up --build
-```
-
-### Stop Docker services
-
-```bash
-docker compose down
-```
-
-### Remove database volume too
-
-```bash
-docker compose down -v
-```
-
-> `docker compose down -v` deletes the MySQL Docker volume and therefore removes the containerized database data.
-
----
-
-# 🔑 Demo Accounts
-
-The repository's `ServiceDataInitializer` seeds demonstration accounts.
+The `ServiceDataInitializer` creates demonstration accounts.
 
 | Role | Email | Password |
 |---|---|---|
@@ -1070,217 +1000,89 @@ The repository's `ServiceDataInitializer` seeds demonstration accounts.
 | Worker — Plumber | `rahul.plumber@example.com` | `Password@123` |
 | Worker — Electrician | `amit.electric@example.com` | `Password@123` |
 | Worker — Carpenter | `sanjay.carpenter@example.com` | `Password@123` |
-| Admin/Federation | `admin@sih.gov.in` | `Admin@123` |
+| Admin / Federation | `admin@sih.gov.in` | `Admin@123` |
 
-Additional seeded worker and customer accounts are created by the initializer.
+Additional customer and worker records are seeded by the initializer.
 
-> These credentials are for local/demo use only. Never reuse them in a real deployment.
+> These credentials are for local demonstration only. Never reuse them for a real deployment.
 
----
+## 🌱 Seeded Demonstration Dataset
 
-# 🌱 Seeded Demo Dataset
-
-The initializer prepares a realistic demo environment containing:
+The initialization process creates demonstration records including:
 
 - 10 service categories
-- 16 customer profiles
+- 16 customer and administrator records
 - 20 worker profiles
-- Multiple worker skills and locations
-- Verified and pending worker states
+- Worker skills and experience
+- Geographic information
+- Verified and pending verification states
 - Availability information
 - Ratings and completed-job counts
-- Multiple service requests across booking states
+- Service requests across different lifecycle states
 - Notification-ready workflows
 
-This makes the application useful for:
+The dataset is intended for:
 
 - Hackathon demonstrations
 - UI testing
 - API testing
 - Database demonstrations
-- Admin dashboard demonstrations
+- Admin dashboard testing
 - AI workforce intelligence demonstrations
 
----
+These are sample records, not official customer or cooperative records.
 
-# 💰 Cooperative Economic Model
+## 📊 Current Implementation & Future Scope
 
-The project concept describes a cooperative-oriented revenue distribution model in the current prototype documentation:
+The project combines implemented functionality with planned production extensions.
 
-```text
-85% → Worker earnings
- 8% → Cooperative welfare
- 7% → Platform operations
-```
-
-This should be understood as a **project/business-model concept represented in the prototype**, not as evidence of a live payment settlement system.
-
-The current repository does not contain a production payment gateway implementation such as Razorpay/Stripe.
-
----
-
-# 🧠 Why This Architecture?
-
-### Why Spring Boot?
-
-Spring Boot provides:
-
-- Structured REST APIs
-- Dependency injection
-- JPA/Hibernate integration
-- Validation
-- Security integration
-- Email support
-- Test infrastructure
-- Production-oriented Java backend patterns
-
-### Why MySQL?
-
-MySQL provides:
-
-- Relational integrity
-- Foreign keys
-- Structured service/customer/worker relationships
-- Familiar SQL tooling
-- Straightforward local and Docker deployment
-
-### Why FastAPI?
-
-FastAPI isolates the ML workload from the Java application.
-
-Benefits:
-
-- Python ML ecosystem
-- Independent model lifecycle
-- Easy API integration
-- Interactive Swagger documentation
-- Clear separation between business services and ML inference
-
-### Why Random Forest?
-
-The prototype uses `RandomForestRegressor` because it can model non-linear relationships between categorical/time/workforce features without requiring a deep-learning stack.
-
-### Why Flutter?
-
-Flutter provides a single mobile codebase for a future/parallel mobile client while allowing the same backend APIs to serve multiple clients.
-
----
-
-# 🔐 Configuration
-
-The backend uses environment-driven configuration for database and email settings.
-
-Important variables include:
-
-```text
-DB_HOST
-DB_PORT
-DB_NAME
-
-DB_USERNAME
-DB_PASSWORD
-
-SPRING_DATASOURCE_URL
-SPRING_DATASOURCE_USERNAME
-SPRING_DATASOURCE_PASSWORD
-
-MAIL_HOST
-MAIL_PORT
-MAIL_USERNAME
-MAIL_PASSWORD
-MAIL_FROM
-MAIL_FROM_NAME
-MAIL_ENABLED
-```
-
-For local development, create your own `.env`/environment configuration and keep secrets out of Git.
-
----
-
-# 🐳 Docker Architecture
-
-```text
-                 Docker Compose
-                       │
-        ┌──────────────┼───────────────┐
-        │              │               │
-        ▼              ▼               ▼
-   ┌─────────┐   ┌────────────┐   ┌─────────────┐
-   │ MySQL 8 │   │ Spring Boot│   │ FastAPI AI  │
-   │         │◄──│ Backend    │──►│ Service     │
-   └────┬────┘   └─────┬──────┘   └─────────────┘
-        │              │
-        │              ▼
-        │         Web Application
-        │         :8088
-        │
-        └──── Persistent Volume
-```
-
-Services defined in `docker-compose.yml`:
-
-```text
-mysql-db
-backend
-ai-service
-```
-
----
-
-# 📊 Current Implementation vs Future Scope
-
-The repository is intentionally a prototype, so some SIH-level capabilities are represented at different implementation stages.
-
-## Implemented / represented in the repository
+### Implemented / Represented in the Repository
 
 - Spring Boot REST backend
 - MySQL persistence
 - JPA/Hibernate entities and repositories
-- Customer registration/login
-- Worker registration/login
+- Customer registration and login
+- Worker registration and login
 - BCrypt password hashing
 - OTP/email infrastructure
 - Service catalogue
-- Worker search/filtering
+- Worker search and filtering
 - Location-aware worker discovery
-- Booking creation
-- Booking status lifecycle validation
+- Booking creation and lifecycle validation
 - Notifications
-- Ratings/reviews
-- Disputes and admin resolution
+- Ratings and reviews
+- Dispute creation and resolution
 - Admin dashboard APIs
-- AI workforce intelligence service
-- FastAPI ML service
+- FastAPI AI service
 - Random Forest demand forecasting
-- Flutter application skeleton
+- Workforce intelligence endpoints
+- Flutter mobile application foundation
 - English/Hindi frontend localization
 - Docker Compose infrastructure
-- Seeded demo data
-- Automated backend tests
+- Demonstration seed dataset
+- Automated backend test infrastructure
 
-## Potential future extensions
+### Future Improvements
 
-- Production payment gateway integration
-- Real escrow/settlement infrastructure
-- Fully enforced multi-tenant cooperative/federation hierarchy
-- Stronger API authorization boundaries
-- Production-grade JWT authentication flow across all clients
-- Real-world workforce demand telemetry instead of synthetic baseline data
-- Persistent trained ML model/versioning
-- Advanced map UI and live location tracking
-- Cloud object storage for worker documents
-- Document/KYC verification workflows
-- Production push notification infrastructure
-- CI/CD pipelines
-- Observability and audit logging
-- Automated security scanning
-- Production deployment hardening
+- [ ] Production payment gateway integration
+- [ ] Real payment settlement and reconciliation
+- [ ] Stronger multi-cooperative tenancy
+- [ ] More granular endpoint authorization
+- [ ] Production-grade authentication across clients
+- [ ] Real-world demand telemetry instead of synthetic baseline data
+- [ ] Persistent ML model and version registry
+- [ ] Advanced map UI and live location tracking
+- [ ] Cloud object storage for worker documents
+- [ ] Document and KYC verification workflows
+- [ ] Production push notification infrastructure
+- [ ] CI/CD pipelines
+- [ ] Observability and audit logging
+- [ ] Automated security scanning
+- [ ] Production deployment hardening
 
----
+## 🧪 Example: Create a Service Request
 
-# 🧪 Example: Create a Service Request
-
-A simplified request can look like:
+A simplified service-request payload can look like:
 
 ```json
 {
@@ -1294,35 +1096,33 @@ A simplified request can look like:
 }
 ```
 
-The backend then:
+The backend processes a request through the following workflow:
 
 ```text
-Validate customer
+Validate Customer
       ↓
-Validate worker
+Validate Worker
       ↓
-Validate service
+Validate Service
       ↓
-Check booking constraints
+Check Booking Constraints
       ↓
-Create PENDING request
+Create PENDING Request
       ↓
-Persist to MySQL
+Persist in MySQL
       ↓
-Create customer/worker notifications
+Generate Notifications
 ```
 
----
+## 📈 AI Demand Prediction Example
 
-# 📈 AI Demand Example
-
-Example request:
+Example AI service request:
 
 ```http
 GET /predict/demand?category=Plumbing&district=Lucknow&dayOfWeek=6&hourOfDay=17&isEmergency=0&activeWorkers=8
 ```
 
-The service returns information including:
+A response can contain information such as:
 
 ```json
 {
@@ -1335,285 +1135,203 @@ The service returns information including:
 }
 ```
 
-> Example values above are illustrative. Actual output is generated by the model at runtime.
+> The values above are illustrative. Actual results are generated by the model at runtime.
 
----
+## 🧠 Why This Architecture?
 
-# 🧭 Project Workflow
+### Why Spring Boot?
 
-```text
-                 ┌──────────────────┐
-                 │ Customer / Worker│
-                 └────────┬─────────┘
-                          │
-                          ▼
-                  Authentication
-                          │
-              ┌───────────┴───────────┐
-              │                       │
-              ▼                       ▼
-        Service Discovery       Worker Management
-              │                       │
-              └───────────┬───────────┘
-                          ▼
-                   Service Booking
-                          │
-                          ▼
-                  Booking Lifecycle
-                          │
-            ┌─────────────┼─────────────┐
-            ▼             ▼             ▼
-      Notifications     Rating       Dispute
-            │             │             │
-            └─────────────┴─────────────┘
-                          │
-                          ▼
-                    Admin Analytics
-                          │
-                          ▼
-                 AI Workforce Engine
-                          │
-                          ▼
-              Demand / Shortage Insight
-```
+Spring Boot provides:
 
----
+- Structured REST APIs
+- Dependency injection
+- JPA/Hibernate integration
+- Validation
+- Security integration
+- Email support
+- Test infrastructure
+- Layered backend architecture
 
-# 🧑‍💻 Development Principles
+### Why MySQL?
 
-The codebase emphasizes:
+MySQL provides:
 
-- Layered architecture
-- Separation of DTOs and entities
-- Service-oriented business logic
-- Repository abstraction
-- Database-backed workflows
-- Input validation
-- BCrypt password hashing
-- Centralized exception handling
-- Environment-based configuration
-- Modular AI service separation
-- Reusable REST APIs
-- Mobile/backend separation
+- Relational data integrity
+- Foreign-key relationships
+- Structured customer, worker, and booking data
+- SQL-based database management
+- Local and Docker deployment support
 
----
+### Why FastAPI?
 
-# 🛡️ Security Notes
+FastAPI separates machine-learning workloads from the Java backend.
 
-This is a hackathon/academic prototype. Before production use, the following areas should receive additional hardening:
+Benefits include:
 
-- Strict endpoint authorization
-- CSRF/session strategy review
-- Production CORS allowlists
-- Rate limiting
-- Brute-force protection
-- Secure secret management
-- HTTPS enforcement
-- Security headers
-- Audit trails
-- PII minimization
-- Input/output security review
-- Dependency vulnerability scanning
-- Production database permissions
-- Secure email/OTP lifecycle
-- Payment security and reconciliation
+- Python ML ecosystem
+- Independent model lifecycle
+- API-based integration
+- Interactive Swagger documentation
+- Separation of application workflows and inference logic
 
----
+### Why Random Forest?
 
-# 🗺️ Roadmap
+The prototype uses `RandomForestRegressor` to model relationships between service category, district, time, emergency indicators, and workforce availability without requiring a deep-learning stack.
 
-```text
-[x] Core Spring Boot backend
-[x] MySQL persistence
-[x] Customer workflows
-[x] Worker workflows
-[x] Service catalogue
-[x] Booking lifecycle
-[x] Notifications
-[x] Ratings and disputes
-[x] Admin APIs
-[x] AI workforce intelligence
-[x] FastAPI ML microservice
-[x] Flutter client foundation
-[x] Docker Compose setup
-[x] Demo seed dataset
+### Why Flutter?
 
-[ ] Production payment integration
-[ ] Stronger multi-cooperative tenancy
-[ ] Production-grade authorization model
-[ ] Persistent ML model/version registry
-[ ] Cloud deployment
-[ ] CI/CD
-[ ] Production push notifications
-[ ] Advanced observability
-[ ] Security audit and penetration testing
-```
+Flutter provides a cross-platform mobile development foundation while allowing the mobile client to consume the same backend APIs.
 
----
-
-# 🎓 Academic / Hackathon Value
+## 🎓 Academic & Hackathon Value
 
 This project demonstrates practical experience with:
 
 - Full-stack application architecture
 - REST API design
-- Java Spring Boot
+- Java and Spring Boot
 - Relational database design
-- ORM with JPA/Hibernate
+- JPA/Hibernate
 - Authentication and password security
 - OTP workflows
 - Service booking systems
-- State-machine-style workflow validation
-- Notifications
-- Admin analytics
+- State-transition validation
+- Notification systems
+- Administrative analytics
 - AI/ML integration
 - Microservice architecture
-- Python FastAPI
+- Python and FastAPI
+- Scikit-Learn
 - Flutter mobile development
 - Docker containerization
-- Git/GitHub workflows
+- Automated testing
+- Git and GitHub workflows
 
----
+## 🧭 Project Demonstration Flow
 
-# 🤝 Suggested Team Responsibilities
-
-A four-member implementation team can divide work as:
-
-| Role | Primary Area |
-|---|---|
-| Member 1 | Spring Boot backend, REST APIs, database |
-| Member 2 | Frontend, UX, localization, responsive UI |
-| Member 3 | AI/ML service, forecasting, workforce intelligence |
-| Member 4 | Flutter app, testing, integration, documentation |
-
-All members can contribute to:
-
-- Architecture
-- Testing
-- Demo preparation
-- Documentation
-- Presentation
-- Deployment
-
----
-
-# 🧑‍🔬 Demo Flow
-
-For a strong project demonstration:
+A typical end-to-end demonstration can follow these stages.
 
 ### 1. Customer
 
 ```text
-Login
- ↓
-Browse services
- ↓
-Find a worker
- ↓
-Create booking
+Customer Login
+      ↓
+Browse Services
+      ↓
+Discover Workers
+      ↓
+Choose Service & Schedule
+      ↓
+Create Booking
 ```
 
 ### 2. Worker
 
 ```text
-Worker login
- ↓
-Receive notification
- ↓
-Accept booking
- ↓
-Update job status
- ↓
-Complete service
+Worker Login
+      ↓
+Receive Booking Request
+      ↓
+Accept / Reject
+      ↓
+Update Job Status
+      ↓
+Complete Service
 ```
 
 ### 3. Customer
 
 ```text
-View completion
- ↓
-Rate worker
- ↓
-Submit review
+View Booking Progress
+      ↓
+Confirm Service Completion
+      ↓
+Rate Worker
+      ↓
+Submit Review
 ```
 
-### 4. Admin
+### 4. Administrator
 
 ```text
-Open dashboard
- ↓
-Review workers
- ↓
-Review bookings
- ↓
-Inspect complaints
- ↓
-Open AI workforce intelligence
+Open Admin Dashboard
+      ↓
+Review Workers
+      ↓
+Inspect Bookings
+      ↓
+Review Disputes
+      ↓
+Open Workforce Intelligence
 ```
 
-### 5. AI
+### 5. AI Workforce Intelligence
 
 ```text
-Select area/time
- ↓
-Generate demand intelligence
- ↓
-Detect workforce gap
- ↓
-Recommend nearby worker activation
+Select Locality & Time Window
+      ↓
+Analyze Workforce and Booking Data
+      ↓
+Generate Demand Insights
+      ↓
+Identify Workforce Gaps
+      ↓
+Review Allocation Recommendations
 ```
 
----
-
-# ⚠️ Prototype Disclaimer
+## 🛡️ Prototype & Security Disclaimer
 
 This repository is a **Smart India Hackathon / academic prototype**.
 
-It should not be interpreted as a fully deployed government or production cooperative marketplace without additional:
+It should not be interpreted as a fully certified production cooperative marketplace.
 
-- Security review
-- Legal/compliance review
+Before production use, the platform requires appropriate:
+
+- Security assessment
+- Privacy and legal review
 - Payment compliance
-- Privacy controls
 - Infrastructure hardening
 - Operational monitoring
 - Cooperative governance implementation
 - Load and reliability testing
-- Independent validation of AI outputs
+- Independent validation of AI recommendations
+- Production-grade data protection
 
-AI forecasts and workforce recommendations should be treated as decision-support outputs, not guaranteed predictions.
+AI forecasts and workforce recommendations are decision-support outputs, not guaranteed predictions.
 
----
+The demonstration dataset must not be confused with official university, customer, worker, or government records.
 
-# 📄 License
+## 📄 License
 
-This repository is intended primarily for **educational, academic, hackathon, and portfolio use**.
+A standalone `LICENSE` file is not currently included in this repository.
 
-If you plan to reuse the project commercially, review the repository dependencies, third-party licenses, data/privacy requirements, and the project's final licensing terms before deployment.
+The project should therefore not be treated as having an explicitly granted open-source license until a license file is added.
 
----
+Review third-party dependencies and their licenses before redistribution or commercial use.
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
-**Injmam**
+**Injmam Ansari**
 
-GitHub:  
-https://github.com/injmam089
+BCA Student | Full-Stack Development | Cybersecurity
 
-Repository:  
+<p>
+  <a href="https://github.com/injmam089">
+    <img src="https://img.shields.io/badge/GitHub-injmam089-181717?style=for-the-badge&logo=github" alt="GitHub Profile">
+  </a>
+</p>
+
+**Repository:**  
 https://github.com/injmam089/cooperative-gig-platform
 
----
-
-## ⭐ If you find the project useful
-
-Consider giving the repository a ⭐ on GitHub and using it as a reference for learning:
-
-**Spring Boot + MySQL + REST APIs + AI/ML + Flutter + Docker**
+**Live Demo:**  
+https://cooperative-gig-platform.onrender.com/
 
 ---
 
 <p align="center">
-  <b>Cooperative Gig Services Platform</b><br>
+  <strong>🤝 Cooperative Gig Services Platform</strong>
+  <br>
   Smart India Hackathon 2026 · Problem Statement 26089
+  <br>
+  Building a more connected cooperative service ecosystem.
 </p>
